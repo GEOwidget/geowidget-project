@@ -1,0 +1,116 @@
+{"bgColorAsString":"#FFFFFF",
+"border":{"color":"#ffffff","size":1},
+"name":"Paris",
+"features":{"showRoute":true,"showZoom":true,"showSearch":false,"showLocationList":true,"showLocationFilter":true,"dontCluster":true,
+"welcomeText":"<div class='infowindow'><div style='font-size-adjust: 0.6; font-weight: bold; margin-bottom: 5px;'><b>Paris</b></div><div style = 'width: 350px;'><img style = 'margin:3px;float:right;border-style:solid;border-width:1px;border-color:#000000;' src = 'customers/myparis/img/paris.jpg' alt = 'Paris' width = '150' height = '101' />Paris ist die Hauptstadt Frankreichs und der Region Île-de-France. In älteren&nbsp;- zumeist lateinischen&nbsp;- Texten wird Paris auch Lutetia/Lutezia genannt.<br /><br />Der Fluss Seine teilt die Stadt in einen nördlichen Teil (rive droite „rechtes Ufer“) und einen südlichen Teil (rive gauche „linkes Ufer“).<br /><br />Das administrativ zur Stadt Paris gehörende Gebiet hat 2.167.994 Einwohner (amtliche Zahl für 1. Januar 2006), in der städtischen Siedlungszone (Unité urbaine) lebten im Jahr 2005 9.928.000 Menschen und in der gesamten Metropolregion etwa 11 Millionen Menschen.</div></div></div>",
+"showWelcomeText":true},
+"templates":{
+	"body":"{root}/templates/body.html",
+	"locationSummaryItem":"{root}/templates/locationSummaryItem.html",
+	"locationSummary":"{root}/templates/locationSummary.html",
+	"locationListItem":"{root}/templates/locationListItem.html"
+},
+"clusters":[{
+						"image":"icons/picon.png",
+						"id":"1",
+						"width":30,
+						"height":30,
+						"anchorX":0,
+						"anchorY":0,
+						"color":"#000000",
+						"fontSize":9,
+						"gridSize":0
+					}],
+"icons":[{
+						"height":30,
+						"width":30,
+						"id":"Behörde",
+						"image":"icons/behoerde.png",
+						"overImage":"icons/behoerde.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Business",
+						"image":"icons/business.png",
+						"overImage":"icons/business.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Unterhaltung",
+						"image":"icons/unterhaltung.png",
+						"overImage":"icons/unterhaltung.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Friedhof",
+						"image":"icons/friedhof.png",
+						"overImage":"icons/friedhof.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Kirche",
+						"image":"icons/kirche.png",
+						"overImage":"icons/kirche.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Monument",
+						"image":"icons/monument.png",
+						"overImage":"icons/monument.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Museum",
+						"image":"icons/museum.png",
+						"overImage":"icons/museum.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Park",
+						"image":"icons/park.png",
+						"overImage":"icons/park.png"
+					},{
+						"height":30,
+						"width":30,
+						"id":"Information",
+						"image":"icons/information.png",
+						"overImage":"icons/information.png"
+					}],
+"layout":{
+					"border":{
+										"size":1,
+										"color":"#FFFFFF"
+									},
+					"mapType":"PHYSICAL_MAP_TYPE"
+				},
+"infoText":"Bitte geben Sie hier Ihre Adresse ein",
+"locations":[
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218281","icon":"Monument","city":"Paris","type":"Tour Eiffel","lng":2.29434,"lat":48.865844,"sv_lng":2.293156,"sv_lat":48.858966,"pov":{"yaw":136.26,"zoom":0,"pitch":-16.49},"postalCode":"75007","street":"Avenue Gustave Eiffel","website":"centre d'informations","description":"Der Eiffelturm (frz.: la tour Eiffel) ist ein Wahrzeichen der französischen Hauptstadt Paris und steht weltweit als Symbol für ganz Frankreich. Er wurde in den Jahren 1887 bis 1889 anlässlich des hundertjährigen Jubiläums der französischen Revolution erbaut. Der Stahlfachwerkturm ist nach seinem Erbauer Gustave Eiffel benannt und steht an der gleichnamigen Avenue Gustave Eiffel im Parc du Champ de Mars, direkt am Fluss Seine. Der 10.000 Tonnen schwere Turm ist 300 Meter, einschließlich der Fernsehantenne sogar 324 Meter, hoch. Die Touristenattraktion empfängt mehr als sechs Millionen Besucher jährlich. Im Jahre 2002 wurde der insgesamt 200-millionste Besucher empfangen."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218283","icon":"Kirche","city":"Paris","type":"Basilique du Sacré Coeur","lng":2.343564,"lat":48.886589,"sv_lng":2.34338,"sv_lat":48.887304,"pov":{"yaw":214.8,"zoom":0,"pitch":-22.62},"postalCode":"75018","street":"Parvis du Sacré Coeur","website":"centre d'informations","description":"Die Basilika Sacré-Cœur (Herz-Jesu-Basilika) ist eine römisch-katholische Wallfahrtskirche auf dem Hügel von Montmartre in Paris."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218283","icon":"Museum","city":"Paris","type":"Panthéon","lng":2.344673,"lat":48.846273,"sv_lng":2.344673,"sv_lat":48.846273,"pov":{"yaw":94.49,"zoom":0,"pitch":-13.15},"postalCode":"75005","street":"Place du Panthéon","website":"centre d'informations","description":"Das Panthéon auf dem Hügel der Heiligen Genoveva in Paris (5. Arrdt.) ist die nationale Ruhmeshalle Frankreichs und die Grabstätte berühmter französischer Persönlichkeiten. Das Gebäude wurde als Kirche der mächtigen Abtei Sainte-Geneviève geplant, im Auftrag von König Ludwig XV. in den Jahren 1764 bis 1790 von dem Architekten Jacques-Germain Soufflot (1713–1780) und seinen Schülern errichtet, nach der Vollendung aber von den Führern der Revolution umgewidmet und zu einer Säkularen Gedenkstätte erklärt."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218284","icon":"Park","city":"Paris","type":"Jardin du Luxembourg","lng":2.336450,"lat":48.847175,"sv_lng":2.332396,"sv_lat":48.844841,"pov":{"yaw":75.5,"zoom":0,"pitch":1.87},"postalCode":"75006","street":"Jardin du Luxembourg","website":"centre d'informations","description":"Der Jardin du Luxembourg ist ein früher königlicher, heute staatlicher Schlosspark im Pariser Quartier Latin (6. Arrondissement) mit einer Fläche von 26 ha. Die Anlage gehört zum Palais du Luxembourg, in dem der Senat tagt, die zweite Kammer des französischen Parlamentes."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218285","icon":"Museum","city":"Paris","type":"Hotel des Invalides","lng":2.313127,"lat":48.858403,"sv_lng":2.313127,"sv_lat":48.858403,"pov":{"yaw":193.04,"zoom":0,"pitch":1.42},"postalCode":"75015","street":"129, rue de Grenelle","website":"centre d'informations","description":"Der Invalidendom (frz. Dôme des Invalides oder Église du Dôme) ist ein in den Jahren von 1679 bis 1708 unter der Bezeichnung Chapelle royale des Invalides nach Plänen von Jules Hardouin-Mansart im klassizistischen Barockstil errichteter und dem Heiligen Ludwig geweihter Kuppelbau in Paris (7. Arrondissement). Er ist Teil des von König Ludwig XIV. zur Aufnahme und Versorgung von Kriegsversehrten in Auftrag gegebenen Hôtel des Invalides. Per Gesetz vom 10. Juni 1840 wurde der Umbau des Gebäudes zum Grabmal Napoleons angeordnet."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218288","icon":"Museum","city":"Paris","type":"Centre Pompidou","lng":2.350941,"lat":48.860185,"sv_lng":2.350941,"sv_lat":48.860185,"pov":{"yaw":88.49,"zoom":0,"pitch":-11.71},"postalCode":"75004","street":"Place Georges Pompidou","website":"centre d'informations","description":"Das Centre national d’art et de culture Georges Pompidou, umgangssprachlich auch Centre Pompidou oder Beaubourg, ist ein staatliches Kunst- und Kulturzentrum in Paris (4. Arrondissement), das auf Initiative des ehemaligen französischen Staatspräsidenten Georges Pompidou von den Architekten Renzo Piano, Richard Rogers und Gianfranco Franchini entworfen und nach einer sechsjährigen Bauzeit am 31. Januar 1977 eröffnet wurde."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218289","icon":"Monument","city":"Paris","type":"Place de la Bastille","lng":2.369159,"lat":48.852718,"sv_lng":2.369159,"sv_lat":48.852718,"pov":{"yaw":4.91,"zoom":0,"pitch":-19.73},"postalCode":"79106","street":"Place de la Bastille","website":"centre d'informations","description":"Die Place de la Bastille ist ein zentraler Platz in Paris. Sie liegt am Scheidepunkt zwischen dem 4., 11. und 12. Arrondissement und ist über die Métro-Station Bastille zu erreichen."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218290","icon":"Monument","city":"Paris","type":"Arc de Triomphe","lng":2.295918,"lat":48.873831,"sv_lng":2.295918,"sv_lat":48.873831,"pov":{"yaw":277.94,"zoom":0,"pitch":-20.32},"postalCode":"75016","street":"Arc de Triomphe","website":"centre d'informations","description":"Der Pariser Triumphbogen (frz. Arc de Triomphe) ist ein Denkmal in Paris. Er gehört neben dem Eiffelturm zu den Wahrzeichen der Metropole. Unter dem Bogen liegt das Grabmal des unbekannten Soldaten aus dem Ersten Weltkrieg mit der täglich gewarteten „Ewigen Flamme der Erinnerung“ (frz. Flamme du Souvenir) in Gedenken an die Toten, die nie identifiziert wurden. Das ganze Jahr hindurch finden Kranzniederlegungen und Ehrungen statt, die ihren Höhepunkt in der Parade am 11. November finden, dem Jahrestag des Waffenstillstands zwischen Frankreich und Deutschland im Jahr 1918."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218291","icon":"Museum","city":"Paris","type":"Musée de l'Homme","lng":2.288159,"lat":48.863111,"sv_lng":2.288159,"sv_lat":48.863111,"pov":{"yaw":189.01,"zoom":0,"pitch":-19.11},"postalCode":"75016","street":"17, Parvis des Libertés et des Droits de l'Homme","website":"centre d'informations","description":"Das Musée de l'Homme ('Museum des Menschen') ist ein Museum für Vorgeschichte und Anthropologie in Paris. Es befindet sich im Palais de Chaillot (Métro: Trocadéro)."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218292","icon":"Museum","city":"Paris","type":"Palais de la Découverte","lng":2.310284,"lat":48.866187,"sv_lng":2.310284,"sv_lat":48.866187,"pov":{"yaw":95.7,"zoom":0,"pitch":-7.45},"postalCode":"75008","street":"Avenue Franklin Delano Roosevelt ","website":"centre d'informations","description":"Das Museum, das im westlichen Flügel des Grand Palais liegt, ist der Wissenschaft gewidmet und richtet sich an die Kleinen, ohne dabei die Eltern zu vergessen."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218293","icon":"Friedhof","city":"Paris","type":"Cimetière Père-Lachaise","lng":2.393976,"lat":48.860311,"sv_lng":2.388976,"sv_lat":48.859911,"pov":{"yaw":66.24,"zoom":0,"pitch":-2.28},"postalCode":"75011","street":"15, Boulevard de Ménilmontant","website":"centre d'informations","description":"Père Lachaise ist der größte Friedhof von Paris und einer der berühmtesten Friedhöfe der Welt. Er ist nach Pater François d’Aix de Lachaise benannt, auf dessen Gärten der Friedhof errichtet wurde."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218294","icon":"Museum","city":"Paris","type":"Institut du monde arabe","lng":2.356768,"lat":48.849421,"sv_lng":2.356768,"sv_lat":48.849421,"pov":{"yaw":165.14,"zoom":0,"pitch":-16.06},"postalCode":"75005","street":"1, Rue des Fossés-Saint-Bernard","website":"centre d'informations","description":"Das Institut du monde arabe (IMA) (deutsch: Institut der Arabischen Welt) befindet sich im 5. Arrondissement von Paris und wurde eingerichtet, um das Verständnis zwischen Frankreich und der arabischen Welt zu fördern."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218295","icon":"Park","city":"Paris","type":"Jardin des Plantes","lng":2.358966,"lat":48.843789,"sv_lng":2.354966,"sv_lat":48.843789,"pov":{"yaw":110.42,"zoom":0,"pitch":-7.2},"postalCode":"75005","street":"36, Rue Geoffroy Saint-Hilaire","website":"centre d'informations","description":"Der Jardin des Plantes ist ein Botanischer Garten in Paris mit einer Fläche von 23,5 ha. Er liegt im Südosten der Stadt, am südlichen Ufer der Seine im 5. Arrondissement zwischen der Pariser Moschee und der wissenschaftlichen Fakultät „Jussieu“."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218296","icon":"Museum","city":"Paris","type":"Musée du Louvre","lng":2.339297,"lat":48.861434,"sv_lng":2.339297,"sv_lat":48.861434,"pov":{"yaw":225.03,"zoom":0,"pitch":-10.7},"postalCode":"75001","street":"34, rue du Louvre","website":"centre d'informations","description":"Der Louvre (frz. Palais du Louvre) in Paris ist ein früherer französischer Königspalast und bildete zusammen mit dem zerstörten Palais des Tuileries das Pariser Stadtschloss. Das Gebäude liegt im Zentrum von Paris zwischen dem rechten Seineufer und der Rue de Rivoli. Sein Innenhof bildet den Ausgangspunkt der so genannten historischen Achse, die sich von der gläsernen Eingangspyramide des Louvres bis zur Grande Arche in La Défense erstreckt und deren Kernstück von der Champs-Élysées gebildet wird."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218297","icon":"Unterhaltung","city":"Paris","type":"Moulin Rouge","lng":2.332497,"lat":48.88393,"sv_lng":2.332497,"sv_lat":48.88393,"pov":{"yaw":332.66,"zoom":0,"pitch":-13.72},"postalCode":"75018","street":"82, Boulevard de Clichy","website":"centre d'informations","description":"Das Moulin Rouge (deutsch: Rote Mühle) ist ein Varieté im Pariser Stadtviertel Montmartre an der Place Blanche im 18. Arrondissement."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218298","icon":"Behörde","city":"Paris","type":"Hotel de ville","lng":2.351008,"lat":48.856709,"sv_lng":2.351008,"sv_lat":48.856709,"pov":{"yaw":106.3,"zoom":0,"pitch":-9.57},"postalCode":"75004","street":"1, Rue Saint-Bon","website":"centre d'informations","description":"Das Hôtel de Ville ist das in der zweiten Hälfte des 19. Jahrhunderts im Stil der Neorenaissance errichtete Rathaus von Paris. Das Rathaus befindet sich im nach ihm benannten 4. Arrondissement an der Rue de Rivoli."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218299","icon":"Friedhof","city":"Paris","type":"Eglise St Séverin","lng":2.346297,"lat":48.852189,"sv_lng":2.346297,"sv_lat":48.852189,"pov":{"yaw":251.57,"zoom":0,"pitch":-8.55},"postalCode":"75005","street":"3, Rue des Prêtres Saint-Séverin","website":"centre d'informations","description":"Die Pfarrkirche Saint-Severin in Paris liegt an der Rue Saint-Séverin im Quartier Latin im 5. Arrondissement (Paris). Sie gilt als die älteste Kirche der Stadt auf dem südlichen linken Seine-Ufer."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218300","icon":"Unterhaltung","city":"Paris","type":"Parc de la Vilette","lng":2.3867083,"lat":48.8906136,"sv_lng":2.3867083,"sv_lat":48.8906136,"pov":{"yaw":75.5,"zoom":0,"pitch":1.87},"postalCode":"75019","street":"143, Avenue Jean Jaurès","website":"centre d'informations","description":"Der Parc de la Villette ist ein Park im Quartier la Villette im 19. Arrondissement von Paris. Er wird vom Canal de l'Ourcq (sprich: urk) durchflossen. Auf ihr verkehren regelmäßig Ausflugs- und Sightseeingboote."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218301","icon":"Business","city":"Paris","type":"Tour Montparnasse","lng":2.324276,"lat":48.843828,"sv_lng":2.324276,"sv_lat":48.843828,"pov":{"yaw":217.42,"zoom":0,"pitch":-21.99},"postalCode":"75015","street":"15, Avenue du Maine","website":"centre d'informations","description":"Der Tour Montparnasse oder der Montparnasse-Turm ist ein 210 m hohes Bürohochhaus im Pariser Stadtteil Montparnasse. Es wurde von 1969 bis 1972 von dem Architekten Roger Saubot errichtet und ist mit seinen 59 Stockwerken nach dem Eiffelturm das höchste Gebäude der Stadt."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218301","icon":"Park","city":"Paris","type":"Parc des buttes Chaumont","lng":2.382317,"lat":48.881651,"sv_lng":2.378466,"sv_lat":48.878949,"pov":{"yaw":113.6,"zoom":0,"pitch":-11.01},"postalCode":"75019","street":"84, Avenue Secrétan","website":"centre d'informations","description":"Der Parc des Buttes-Chaumont ist eine öffentliche Grünanlage in im 19. Arrondissement von Paris."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html","{root}/templates/info1.html"],"phone":"014218301","icon":"Museum","city":"Paris","type":"Musée d'Orsay","lng":2.324598,"lat":48.860043,"sv_lng":2.324598,"sv_lat":48.860043,"pov":{"yaw":86.82,"zoom":0,"pitch":-14.71},"postalCode":"75007","street":"62, Rue de Lille","website":"centre d'informations","description":"Das Musée d’Orsay ist ein Kunstmuseum in Paris, das am südlichen Ufer der Seine gegenüber des Tuileriengartens liegt. Das Museumsgebäude ist der anlässlich der Weltausstellung des Jahres 1900 errichtete Bahnhof Gare d’Orsay, der bis 1939 für den Fernverkehr in den Südwesten Frankreichs genutzt wurde. Die Entscheidung, den Bahnhof in ein Museum umzuwandeln, fiel 1977 in Folge einer Initiative des französischen Präsidenten Valéry Giscard d’Estaing. Der folgende Umbau wurde von dem Architekturbüro ACT-Architecture geleitet, bis das Musée d’Orsay 1986 eröffnet wurde."},
+{"cluster":1,"templates":["{root}/templates/default.html","{root}/templates/streetview.html"],"phone":"014218302","icon":"Unterhaltung","city":"Paris","type":"Rue Mouffetard","lng":2.349618,"lat":48.841458,"sv_lng":2.349618,"sv_lat":48.841458,"pov":{"yaw":189.74,"zoom":0,"pitch":5.76},"postalCode":"75005","street":"Rue Mouffetard","website":"centre d'informations","description":"Die Straße Rue Mouffetard (im Volksmund: La Mouffe) ist eine der ältesten Straßen von Paris und zählt zu den bekanntesten Sehenswürdigkeiten der Stadt. Sie befindet sich im 5. Arrondissement zwischen Place de la Contrescarpe im Norden und Rue Censier im Süden. Insgesamt hat sie eine Länge von ca. 600 m und eine Breite von ca. 6 m."},
+{"cluster":1,"templates":["{root}/templates/info.html","{root}/templates/streetview.html"],"open":"Von Montag bis Samstag<br />(außer 25. Dezember, 1. Januar und 1. Mai)<br />von 7 Uhr bis 20 Uhr.","phone":"","icon":"Information","city":"Paris","type":"Gare de l'Est","lng":2.35948,"lat":48.875969,"sv_lng":2.35948,"sv_lat":48.875969,"pov":{"yaw":26.94,"zoom":0,"pitch":-3.75},"postalCode":"75010","street":"Place du 11 Novembre 1918","website":"http://de.parisinfo.com/wo-sie-uns-finden-konnen/tourist-info-center-gare-de-lest/","description":""},
+{"cluster":1,"templates":["{root}/templates/info.html","{root}/templates/streetview.html"],"open":"Von 1. November bis 31. Mai<br />(am 1. Mai geschlossen)<br />Von Monntag bis Samstag: 10 Uhr - 19 Uhr<br />Sonntag und Feiertage: 11 Uhr - 19 Uhr<br />Von 1. Juni bis 31. Oktober<br />Jeden Tag: von 9 Uhr bis 19 Uhr","phone":"","icon":"Information","city":"Paris","type":"Pyramides","lng":2.333514,"lat":48.865875,"sv_lng":2.333514,"sv_lat":48.865875,"pov":{"yaw":18.06,"zoom":0,"pitch":4.03},"postalCode":"75001","street":"25, rue des Pyramides","website":"http://de.parisinfo.com/wo-sie-uns-finden-konnen/tourist-info-center-pyramides/","description":""},
+{"cluster":1,"templates":["{root}/templates/info.html","{root}/templates/streetview.html"],"open":"Täglich<br />(außer 25. Dezember, 1. Januar und 1. Mai)<br />von 8 Uhr bis 18 Uhr","phone":"","icon":"Information","city":"Paris","type":"Gare du Nord","lng":2.354677,"lat":48.879871,"sv_lng":2.354677,"sv_lat":48.879871,"pov":{"yaw":18.46,"zoom":0,"pitch":-15.99},"postalCode":"75010","street":"18, rue de Dunkerque","website":"http://de.parisinfo.com/wo-sie-uns-finden-konnen/tourist-info-center-gare-du-nord/","description":""},
+{"cluster":1,"templates":["{root}/templates/info.html","{root}/templates/streetview.html"],"open":"Jeden Tag von 10 Uhr bis 18 Uhr<br />Außer 25 Dezember, 1 Januar, 1 Mai","phone":"","icon":"Information","city":"Paris","type":"Anvers","lng":2.343716,"lat":48.882904,"sv_lng":2.343716,"sv_lat":48.882904,"pov":{"yaw":166.35,"zoom":0,"pitch":0.31},"postalCode":"75018","street":"72, boulevard Rochechouart","website":"http://de.parisinfo.com/wo-sie-uns-finden-konnen/tourist-info-center-anvers/","description":""},
+{"cluster":1,"templates":["{root}/templates/info.html","{root}/templates/streetview.html"],"open":"Täglich von 10 Uhr bis 19 Uhr<br />Wenn Messe","phone":"","icon":"Information","city":"Paris","type":"Porte de Versailles","lng":2.287774,"lat":48.832309,"sv_lng":2.287774,"sv_lat":48.832309,"pov":{"yaw":152.35,"zoom":0,"pitch":-10.28},"postalCode":"75015","street":"1, place de la Porte de Versailles","website":"http://de.parisinfo.com/wo-sie-uns-finden-konnen/tourist-info-center-paris-expo/","description":""},
+{"cluster":1,"templates":["{root}/templates/info.html","{root}/templates/streetview.html"],"open":"Montags bis samstags<br />Außer an Feiertagen<br />Von 8 Uhr bis 18 Uhr","phone":"","icon":"Information","city":"Paris","type":"Gare de Lyon","lng":2.372148,"lat":48.845639,"sv_lng":2.372148,"sv_lat":48.845639,"pov":{"yaw":147.98,"zoom":0,"pitch":-9.03},"postalCode":"75012","street":"20, Boulevard Diderot","website":"http://de.parisinfo.com/wo-sie-uns-finden-konnen/tourist-info-center-gare-de-lyon/","description":""}
+]}

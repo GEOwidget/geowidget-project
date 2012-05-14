@@ -1,0 +1,38 @@
+<div class="infowindow" style="width:270px;">
+    <script type="application/javascript">
+        YUI().use('node', function(Y){
+            var addressInput = 'div.infowindow input.startAddressInput';
+            var doRoute = function(){
+                var saddr = Y.get(addressInput).get('value');
+                YUI.geowidget.util.GeoUtil.retrievePlacemark(saddr, function(placemark){
+                    YUI.geowidget.Model.managers.directionsManager.calcRoute(placemark, YUI.geowidget.Model.get('selectedLocation'));
+                });
+            };
+            Y.get(addressInput).on('keyup', function(event){
+                if (event.keyCode == 13) {
+                    doRoute();
+                }
+            });
+            Y.get('div.infowindow input.calcRouteButton').on('click', doRoute);
+            if (YUI.geowidget.Model.selectedPosition !== undefined) {
+                Y.get(addressInput).set('value', YUI.geowidget.Model.selectedPosition.address);
+            }
+        });
+    </script>
+    <span class="title">Anfahrt</span>
+    <div class="section">
+        <span class="label">Ziel:</span>
+        <br/>
+        <span class="street">Musterstr. 1</span>
+        <br/>
+        <span class="postalCode">12345</span>
+        <span class="city">Musterstadt</span>
+    </div>
+    <div class="section">
+        <span class="label">Start:</span>
+        <br/>
+        <input type="text" class="startAddressInput"/>
+        <br/>
+        <input type="button" value="Route berechnen" class="calcRouteButton"/>
+    </div>
+</div>

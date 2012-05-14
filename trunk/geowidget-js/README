@@ -1,0 +1,28 @@
+GEOwidget is a MIT licesened
+widget builder application for building Google Maps widgets,
+like location finders.
+It consists of three components: geowidget-js, geowidget-manager and
+geowidget-manager-php.
+geowidget-js is the actual javascripts based widget which
+consumes a JSON config that is built by the manager application.
+The later one consists of the client side part (geowidget-manager) which
+is written in Adobe Flex and the server-side part (geowidget-manager-php),
+which is written in PHP.
+
+This is the geowidget-js sub-project.
+It consists only of javascript code that is minified by the
+JSBuilder2 tool from sencha (http://dev.sencha.com/deploy/JSBuilder2/Readme.txt)
+
+To create the minified javascript, you need to start the Bash-Script build.sh
+(Use Cygwin on windows). Make sure that you have SUN JDK 6 or later installed.
+
+To see what is possible copy the geowidget-js to your
+localhost web server (we used Zend Server CE PHP 5.2) and try one of the examples:
+
+1. http://localhost/geowidget-js/
+2. http://localhost/geowidget-js/customers/mygolf/
+3. http://localhost/geowidget-js/customers/myparis/
+
+Important: You need to use a own web server, starting the Javascript
+from the filesystem does not work, also it is recommended to use PHP 5.2
+as the geowidget-manager-php project does not work with PHP 5.3

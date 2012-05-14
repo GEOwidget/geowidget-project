@@ -1,0 +1,16 @@
+<div class="infowindow" style="width:500px;">
+    <span class="title">Directions</span>
+    <div class="section" style="float:left;">
+        From <b><span class="startAddress"></span></b>
+        <br />To <b><span class="city"></span>, <span class="endAddress"></span> (<span class="type"></span>)</b>
+        <br/>
+        Distance: <span class="routeDistance"></span>
+        (Estimated time: <span class="routeDuration"></span>)
+    </div>
+    <div class="section" style="float: right;">
+        <a href="javascript:YUI.geowidget.Model.managers.directionsManager.printRoute();"><img style="border-style:none;margin-right:25px;" src="templates/printer.png" alt="Print" width="16" height="16" /></a>
+    </div>
+    <div style="clear: both;"/>
+    <div style="" class="section routeTablePlaceholder">
+    </div>
+</div>

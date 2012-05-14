@@ -1,0 +1,17 @@
+<div class="infowindow" style="width: 400px; height: 200px">
+    <script type="application/javascript">
+        YUI().use('node', function(Y){
+            var node = Y.Node.getDOMNode(Y.get('div.infowindow div.sv_section'));
+            var pov = YUI.geowidget.Model.get('selectedLocation').pov;
+            var panoramaOptions = {
+                latlng: new google.maps.LatLng(YUI.geowidget.Model.get('selectedLocation').sv_lat,
+				YUI.geowidget.Model.get('selectedLocation').sv_lng),
+                pov: pov
+            };
+            new GStreetviewPanorama(node, panoramaOptions);
+        });
+    </script>
+    <span class="title">Streetview</span>
+    <div style="width:375px;height:150px;" class="sv_section">
+    </div>
+</div>
