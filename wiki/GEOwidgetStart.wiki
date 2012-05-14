@@ -12,3 +12,14 @@ The GEOwidget application, from the user perspective, is split in two parts:
 1) The online management interface: enter all locations which need to be displayed. Also, various features can be adjusted like the zoom function, the search bar, routing information, etc. The web application generates an iframe which can be pasted in the source code, where it needs to be displayed.
 
 2) The widget displays the map with all information as configured. The widget uses a json config file which can be manipulated any time in order to make specific adjustments which may not be available through the web interface.
+
+= Installation requirements =
+
+*Web Interface*
+<br />Zend Server Community Environment 5.3, including PHP 5.2
+(newer versions may work but have not been tested)
+<br />MySQL 5.0 (or newer, not tested)
+<br />PHPUnit 3.4.3 (or newer, not tested)
+
+*Widget (Javascript)*
+<br />Google API v2 key
