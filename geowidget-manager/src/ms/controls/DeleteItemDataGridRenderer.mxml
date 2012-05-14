@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<!--
+	An ItemRenderer that can be used in an custom column of a DataGrid.
+	The Renderer displays a button, if the user clicks the button,
+	the provided callback function is called.
+-->
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" horizontalScrollPolicy="off" verticalScrollPolicy="off" verticalAlign="middle" horizontalAlign="center"
+		 >
+	<mx:Script>
+		<![CDATA[
+			public var deleteCallback:Function;
+			public var editCallback:Function;
+			
+			[Bindable]
+			public var showButtons:Boolean = true;
+			
+			[Embed(source="/assets/icons/remove.png")]
+        	private static const deleteIcon:Class;
+			[Embed(source="/assets/icons/remove.png")]
+        	private static const deleteOverIcon:Class;
+			[Embed(source="/assets/icons/edit.png")]
+        	private static const editIcon:Class;
+			[Embed(source="/assets/icons/edit.png")]
+        	private static const editOverIcon:Class;
+		]]>
+	</mx:Script>
+	<mx:Button click="editCallback!=null ? editCallback(data) : ''" 
+		overSkin="{editOverIcon}"
+		downSkin="{editIcon}"
+		upSkin="{editIcon}" useHandCursor="true" buttonMode="true"
+		width="20" height="20" visible="{showButtons}"/>
+	<mx:Button click="deleteCallback!=null ? deleteCallback(data) : ''" 
+		overSkin="{deleteOverIcon}"
+		downSkin="{deleteIcon}"
+		upSkin="{deleteIcon}" useHandCursor="true" buttonMode="true"
+		width="20" height="20" visible="{showButtons}"/>
+</mx:HBox>

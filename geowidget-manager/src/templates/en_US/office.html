@@ -1,0 +1,31 @@
+<div class="infowindow">
+    <script type="application/javascript">
+        YUI().use('node', function(Y){
+        	var imageURL = YUI.geowidget.Model.get('selectedLocation').imageURL;
+        	if(imageURL==null) {
+        	    // remove image if URL is not available
+				var node = Y.get('div.infowindow div.section img');
+    			node.remove();  		
+        	}
+        });
+    </script>
+	<span class="title">Office</span>
+    <div class="section">
+		<img class="imageURL@src" src="#" style="position: absolute; width: 80px; top: 0px; right: 0px;"></img>
+        <span class="name">Company name</span>
+        <br/>
+        <span class="street">Street</span>
+        <br/>
+        <span class="postalCode">Postal Code</span> <span class="city">City</span>
+    </div>
+    <div class="section">
+        <span class="label">Contact</span>
+        <br/>
+        Phone: <span class="phone1">Phone</span>
+        <br/>
+        Fax: <span class="fax">Fax</span>
+    </div>
+	<div class="website section">
+		<a class="websiteURL@href" href="#">Website</a>
+	</div>
+</div>

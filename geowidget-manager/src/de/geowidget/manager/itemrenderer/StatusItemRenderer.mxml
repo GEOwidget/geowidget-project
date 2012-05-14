@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:ViewStack xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init();">
+<mx:Script>
+	<![CDATA[
+		import de.geowidget.manager.utils.ArrayCollectionUtil;
+		import mx.utils.ArrayUtil;
+		import de.geowidget.manager.model.vo.PlacemarkVO;
+		import mx.containers.FormItem;
+		import mx.collections.ArrayCollection;
+		import gnu.as3.gettext._FxGettext;
+		import com.google.maps.interfaces.INavigationControl;
+		
+		import de.geowidget.manager.model.vo.GeoStatusVO;
+		import de.geowidget.manager.model.vo.LocationVO;
+		
+		import gnu.as3.gettext.FxGettext;
+		
+		import mx.controls.Menu;
+		import mx.events.MenuEvent;
+
+		[Embed(source='/assets/status/loading.swf')]
+		private const processingLight:Class;
+		
+		[Bindable]
+		private var fx:_FxGettext;
+		
+		[Bindable]
+		private var uncertainData:ArrayCollection;
+		
+		[Bindable]
+		private var selectedDataIndex:int;
+					
+		private function init():void {
+			// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+			fx = FxGettext;
+		}
+		
+		public function set geoStatus(geoStatus:GeoStatusVO):void
+		{
+			FormItem(parent).required = false;
+			if(geoStatus != null)
+			{
+				switch(geoStatus.code)
+				{
+					case GeoStatusVO.CODE_ERROR:
+						this.selectedChild = this.img_error;
+						break;
+					case GeoStatusVO.CODE_LOADING:
+						this.selectedChild = this.img_loading;
+						break;
+					case GeoStatusVO.CODE_OK:
+						this.selectedChild = this.img_ok;
+						break;
+					case GeoStatusVO.CODE_UNCERTAIN:
+						trace('uncertain');
+						this.selectedChild = this.img_uncertain;
+						FormItem(parent).required = true;
+						uncertainData = new ArrayCollection(geoStatus.possibilities);
+						img_uncertain.setStyle("backgroundColor", "#FFFFFF");
+						selectedDataIndex = -1;
+						break;
+					case GeoStatusVO.CODE_UNCERTAIN_OK:
+						trace('uncertain_ok');
+						this.selectedChild = this.img_uncertain;
+						FormItem(parent).required = true;
+						uncertainData = new ArrayCollection(geoStatus.possibilities);
+						img_uncertain.setStyle("backgroundColor", "#A4CE91");
+						selectedDataIndex = geoStatus.selectedPossibility;
+						break;
+					default:
+						this.selectedChild = this.img_empty;
+						
+						break;
+				}
+			}
+			else
+			{
+				this.selectedChild = this.img_empty;
+			}
+			
+		}
+		
+		public function get location():LocationVO {
+			return data as LocationVO;
+		}
+		
+		private function changeLocation(e:Event):void{
+			var srcLocation:PlacemarkVO = e.currentTarget.selectedItem as PlacemarkVO;
+			location.lat = srcLocation.lat;
+			location.lng = srcLocation.lng;
+			location.geoStatus.code = GeoStatusVO.CODE_UNCERTAIN_OK;
+			location.geoStatus.selectedPossibility = uncertainData.getItemIndex(srcLocation);
+			// trigger databinding
+			var geoStatus:GeoStatusVO = location.geoStatus;
+			location.geoStatus = null;
+			location.geoStatus = geoStatus;
+		}
+	
+	]]>
+</mx:Script>
+
+	<mx:HBox width="100%" id="img_error" horizontalAlign="center" verticalAlign="middle" horizontalScrollPolicy="off" backgroundColor="#BB0C0C">
+		<mx:Label color="#ffffff">
+			<mx:text>{fx.gettext('We can not lookup the address please review the address data.')}</mx:text>
+		</mx:Label>
+	</mx:HBox>
+	<mx:HBox width="100%" id="img_loading" horizontalAlign="center" verticalAlign="middle" horizontalScrollPolicy="off">
+		<mx:Image source="{processingLight}" /> 
+		<mx:Label color="#aaaaaa">
+			<mx:text>{fx.gettext('Performing Geolookup...')}</mx:text>
+		</mx:Label>
+	</mx:HBox>
+	<mx:HBox width="100%" id="img_ok" horizontalAlign="center" verticalAlign="middle" horizontalScrollPolicy="off" backgroundColor="#A4CE91">
+		<mx:Label color="#3D5A30">
+			<mx:text>{fx.gettext('Geolookup was successful')}</mx:text>
+		</mx:Label>
+	</mx:HBox>
+	<mx:HBox width="100%" height="100%" id="img_uncertain" horizontalScrollPolicy="off" >
+		<mx:ComboBox id="uncertainCombo" width="{img_uncertain.width}" change="changeLocation(event)" dataProvider="{uncertainData}" selectedIndex="{selectedDataIndex}">
+			<mx:prompt>{fx.gettext('Please select a location...')}</mx:prompt>
+		</mx:ComboBox>
+	</mx:HBox>
+	<mx:HBox id="img_empty" ></mx:HBox>
+
+</mx:ViewStack>

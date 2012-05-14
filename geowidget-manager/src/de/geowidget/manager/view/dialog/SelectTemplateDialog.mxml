@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="500" height="400" showCloseButton="{currentState!='firstTime'}" close="titlewindow1_closeHandler(event)" initialize="init()">
+	<mx:Script>
+		<![CDATA[
+			import de.geowidget.manager.model.vo.metadata.GlobalTemplateVO;
+			
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			import mx.events.CloseEvent;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+			
+			[Bindable]
+			public var showWarning:Boolean;
+			
+			[Bindable]
+			public var templates:Array;
+			
+			public var selectedTemplate:GlobalTemplateVO;
+
+			private function init():void {
+				// ok, this looks a bit silly, but somehow a TitleWindow needs this special treatment
+				fx = FxGettext;
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				dispatchEvent(new Event("ACCEPT_CANCEL"));
+			}
+
+			protected function okButton_clickHandler(event:MouseEvent):void
+			{
+				selectedTemplate = templateList.selectedItem as GlobalTemplateVO;
+				this.dispatchEvent(new Event("ACCEPT_OK"));
+			}
+
+		]]>
+	</mx:Script>
+	<mx:states>
+		<mx:State name="firstTime">
+			<mx:SetProperty target="{dialogText}" name="htmlText">
+				<mx:value>{fx.gettext("Depending on what kind of map you want to create, we provide different templates. If your desired template is not available, please choose 'Empty' and create the desired data columns on your own.")}</mx:value>
+			</mx:SetProperty>
+		</mx:State>
+	</mx:states>
+	<mx:title>{fx.gettext('Select template')}</mx:title>
+	<mx:Text id="dialogText" left="10" right="10" bottom="175" top="10" fontSize="12">
+		<mx:htmlText>{fx.gettext("If you choose a new template, the existing information will be merged with the template data. You may have to delete unwanted columns afterwards as no data will be deleted by this operation.")}</mx:htmlText>
+	</mx:Text>
+	<mx:List id="templateList" dataProvider="{templates}" labelField="name" fontSize="12" top="93" left="10" right="10" bottom="44" selectedIndex="0">
+	</mx:List>
+	<mx:Button id="okButton" click="okButton_clickHandler(event)" left="10" bottom="5">
+		<mx:label>{fx.gettext('OK')}</mx:label>
+	</mx:Button>
+</mx:TitleWindow>

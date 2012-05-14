@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+Copyright (c) 2007 FlexLib Contributors.  See:
+    http://code.google.com/p/flexlib/wiki/ProjectContributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
+
+    <mx:Metadata>
+        [Event(name="cancel", type="flash.events.Event")]
+		[Event(name="commit", type="flash.events.Event")]
+        [Event(name="ok", type="flash.events.Event")]
+		[Event(name="change", type="flash.events.Event")]
+    </mx:Metadata>
+
+	<mx:Script>
+		<![CDATA[
+			import gnu.as3.gettext.FxGettext;
+			
+			import mx.containers.ViewStack;
+			import mx.controls.buttonBarClasses.ButtonBarButton;
+			import mx.core.Container;
+			import mx.events.IndexChangedEvent;
+			import mx.events.ItemClickEvent;
+			
+			private var _views:ViewStack;
+			
+			public var cancelLabel:String = "Cancel";
+			public var commitLabel:String = "Commit";
+			public var okLabel:String = "Ok";
+			public var validHandler:Function = function(view:*):Boolean {
+				if(view is ViewStack) {
+					// a viewstack is valid if all views are valid
+					return validHandler((view as ViewStack).selectedChild);
+				} else if(view is ValidationForm) {
+					var form:ValidationForm = view as ValidationForm;
+					return form.isValid();
+				} else if(view is Container) {
+					var container:Container = view as Container;
+					// a container is valid if all of its children are valid
+					return container.getChildren().some(function(item:*, index:int, array:Array):Boolean {
+						return validHandler(item);
+					});
+				} else 
+					return true;
+			};
+			
+			private const PREV_BUTTON:int = 0;
+			private const NEXT_BUTTON:int = 1;
+			private const CANCEL_BUTTON:int = 2;
+			
+			public function set viewStack(viewStack:ViewStack):void {
+				_views = viewStack;
+				_views.addEventListener(IndexChangedEvent.CHANGE, indexChanged);
+			}
+			
+			private function indexChanged(event:IndexChangedEvent):void {
+				setIndex(event.newIndex);
+			}
+			
+			private function setIndex(index:int):void {
+				// changes state of the buttons depending on the 
+				// selected view
+				switch(index) {
+					// first view
+					case 0:
+						ButtonBarButton(buttonBar.getChildAt(PREV_BUTTON)).enabled=false;
+						ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).enabled = true;
+						ButtonBarButton(buttonBar.getChildAt(NEXT_BUTTON)).label = '>>>';
+						break;
+					// commit view
+					case _views.numChildren-2:
+						ButtonBarButton(buttonBar.getChildAt(PREV_BUTTON)).enabled=true;
+						ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).enabled = true;
+						ButtonBarButton(buttonBar.getChildAt(NEXT_BUTTON)).label = commitLabel;
+						break;
+					// last view
+					case _views.numChildren-1:
+						ButtonBarButton(buttonBar.getChildAt(PREV_BUTTON)).enabled=false;
+						ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).enabled = false;
+						ButtonBarButton(buttonBar.getChildAt(NEXT_BUTTON)).label = okLabel;
+						break;
+					// all other views
+					default:
+						ButtonBarButton(buttonBar.getChildAt(PREV_BUTTON)).enabled=true;
+						ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).enabled = true;
+						ButtonBarButton(buttonBar.getChildAt(NEXT_BUTTON)).label = '>>>';
+						break;
+				}
+				ButtonBarButton(buttonBar.getChildAt(PREV_BUTTON)).useHandCursor = ButtonBarButton(buttonBar.getChildAt(PREV_BUTTON)).enabled;
+				ButtonBarButton(buttonBar.getChildAt(NEXT_BUTTON)).useHandCursor = true;
+				ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).useHandCursor = ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).enabled;
+				ButtonBarButton(buttonBar.getChildAt(CANCEL_BUTTON)).label = cancelLabel;
+			}
+			
+			private function isFirstChild(views:ViewStack):Boolean {
+				return views.selectedIndex == 0;
+			}
+
+			private function isLastChild(views:ViewStack):Boolean {
+				return views.selectedIndex == views.numChildren - 1;
+			}
+			
+			private function isCommitChild(views:ViewStack):Boolean {
+				return views.selectedIndex == views.numChildren - 2;
+			}
+			
+			private function isActViewValid():Boolean {
+				if(validHandler!=null) {
+					return validHandler(_views.selectedChild);
+				} else
+					return true;
+			}
+			
+			private function goPrevious(views:ViewStack):void {
+				if((views.selectedChild is ViewStack) && !isFirstChild(views.selectedChild as ViewStack)) {
+					goPrevious(views.selectedChild as ViewStack);
+				} else {
+					views.selectedIndex = views.selectedIndex-1;
+				}
+			}
+			
+			private function goNext(views:ViewStack):void {
+				if((views.selectedChild is ViewStack) && !isLastChild(views.selectedChild as ViewStack)) {
+					goNext(views.selectedChild as ViewStack);
+				} else {
+					views.selectedIndex = views.selectedIndex+1;
+				}
+			}
+			
+			public function commitSucceeded():void {
+				// commit was succesfull, go to last page
+				_views.selectedIndex = _views.numChildren - 1
+			}
+			
+			private function clickHandler(event:ItemClickEvent):void {
+				switch(event.index) {
+					case PREV_BUTTON:
+						dispatchEvent(new Event("change"));
+						goPrevious(_views);
+					break;
+					case NEXT_BUTTON:
+						if(isActViewValid()) {
+							if(isLastChild(_views)) {
+								dispatchEvent(new Event("ok"));
+							} else if(isCommitChild(_views)) {
+								dispatchEvent(new Event("commit"));
+							} else {
+								dispatchEvent(new Event("change"));
+								goNext(_views);
+							}
+						}
+					break;
+					case CANCEL_BUTTON:
+						dispatchEvent(new Event("cancel"));
+					break;
+				}
+            }
+			
+		]]>
+	</mx:Script>
+
+	  <mx:ButtonBar id="buttonBar"
+	        borderStyle="solid" 
+	        horizontalGap="5" 
+	        itemClick="clickHandler(event);" creationComplete="setIndex(0);"
+			buttonStyleName="actionButton">
+	        <mx:dataProvider>
+	            <mx:String><![CDATA[<<<]]></mx:String>
+	            <mx:String><![CDATA[>>>]]></mx:String>
+	            <mx:String></mx:String>
+	        </mx:dataProvider>
+	    </mx:ButtonBar>
+	
+</mx:Canvas>
+

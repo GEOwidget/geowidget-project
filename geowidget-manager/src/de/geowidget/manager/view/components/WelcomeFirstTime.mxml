@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()" xmlns:controls="ms.controls.*" paddingLeft="20" paddingRight="20" paddingTop="40" paddingBottom="10">
+	<mx:Script>
+		<![CDATA[
+			import mx.effects.easing.Elastic;
+
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+			}
+		]]>
+	</mx:Script>
+	<mx:Fade id="rollOver" alphaFrom="0.5" alphaTo="1" duration="250" easingFunction="{Elastic.easeInOut}"/>
+	<mx:Fade id="rollOut" alphaFrom="1" alphaTo="0.5" duration="250" easingFunction="{Elastic.easeInOut}"/>
+	<mx:Text styleName="header" width="100%">
+		<mx:htmlText>{fx.gettext('Welcome to GEOwidget - your online map editor!')}</mx:htmlText>
+	</mx:Text>
+	<mx:Text styleName="subheader" width="100%">
+		<mx:htmlText>{fx.gettext('Take a look at whats possible with this amazing tool or start creating your own map. Look at these examples:')}</mx:htmlText>
+	</mx:Text>
+	<mx:Canvas width="100%">
+		<mx:Image id="golfButton" x="62.5" y="25" source="assets/screenshots/golf.png" rollOverEffect="{rollOver}" rollOutEffect="{rollOut}" alpha="0.5"/>
+		<mx:Image id="parisButton" x="348.5" y="25" source="assets/screenshots/paris.png" rollOverEffect="{rollOver}" rollOutEffect="{rollOut}" alpha="0.5"/>
+		<mx:Image id="storeButton" x="643.5" y="25" source="assets/screenshots/store.png" rollOverEffect="{rollOver}" rollOutEffect="{rollOut}" alpha="0.5"/>
+		<mx:Label x="81.5" y="189" fontSize="12">
+			<mx:text>{fx.gettext('a directory of golf courts')}</mx:text>
+		</mx:Label>
+		<mx:Label x="367.5" y="189" fontSize="12">
+			<mx:text>{fx.gettext('a tourist guide for paris')}</mx:text>
+		</mx:Label>
+		<mx:Label x="691.5" y="189" fontSize="12">
+			<mx:text>{fx.gettext('a store locator')}</mx:text>
+		</mx:Label>
+	</mx:Canvas>
+	<mx:Spacer height="20"/>
+	<controls:ActionButton id="okButton" y="365" fontSize="12" left="20">
+		<controls:label>{fx.gettext('or create your own map!')}</controls:label>
+	</controls:ActionButton>
+</mx:VBox>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+				layout="absolute" 
+				width="536" 
+				height="434" 
+				close="onClose()" 
+				creationComplete="init()"
+				showCloseButton="true" >
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+
+			import mx.rpc.remoting.RemoteObject;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.validators.Validator;
+			import mx.validators.EmailValidator;
+			import mx.events.ValidationResultEvent;
+			import mx.controls.Alert;
+			import mx.managers.HistoryManager;
+			import mx.managers.BrowserManager;
+			import mx.managers.IBrowserManager;
+			
+			import de.geowidget.manager.ServiceLocator;
+			
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+			
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+				
+				userName.setFocus();
+				
+			}
+			
+			protected function sendBtn_clickHandler(event:MouseEvent):void
+			{
+				
+				var validators:Array = [userNameValidator, userEmailValidator, feedbackValidator];
+				
+				var valResult:Array = Validator.validateAll(validators);
+				
+				if(valResult.length > 0)
+				{		
+					errorLabel.text = fx.gettext('Form fields validation is failed');
+					
+					return;
+				}
+				else
+				{
+					errorLabel.text = '';
+				}
+				
+				var browserManager:IBrowserManager = BrowserManager.getInstance();
+				
+				var sessionService:RemoteObject = ServiceLocator.getInstance().getSessionService();
+				
+				var token:AsyncToken = sessionService.sendFeedback(userName.text, userEmail.text, feedback.text, sendCopy.selected, browserManager.url);
+				token.addResponder(new AsyncResponder(onSendSucc,onFault));
+				
+			}
+			
+			private function onSendSucc(event:ResultEvent, t:Object):void{
+				
+				dispatchEvent(new Event("ACCEPT_OK"));
+				
+			}
+			
+			private function onFault(e:FaultEvent, t:Object):void{
+				
+			}
+			
+			protected function onClose():void
+			{
+				dispatchEvent(new Event("ACCEPT_CANCEL"));
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:title>{fx.gettext('Your feedback is welcome')}</mx:title>
+	
+	<mx:Validator id="userNameValidator" source="{userName}" property="text" >
+	</mx:Validator>
+	
+	<mx:EmailValidator id="userEmailValidator" source="{userEmail}" property="text" >
+	</mx:EmailValidator>
+	
+	<mx:Validator id="feedbackValidator" source="{feedback}" property="text" >
+	</mx:Validator>
+	
+	<mx:VBox paddingLeft="10" paddingTop="10" paddingBottom="10" paddingRight="10" verticalGap="5" width="100%" height="100%">
+		
+		<mx:Label fontWeight="bold"><mx:text>{fx.gettext('Your name')}</mx:text></mx:Label>
+		
+		<mx:TextInput id="userName" width="50%" />
+		
+		<mx:Label fontWeight="bold"><mx:text>{fx.gettext('Your email address')}</mx:text></mx:Label>
+		
+		<mx:TextInput id="userEmail" width="50%" />
+		
+		<mx:CheckBox id="sendCopy" width="183" ><mx:label>{fx.gettext('Send me a copy')}</mx:label></mx:CheckBox>
+		
+		<mx:HBox horizontalGap="0">
+			<mx:Label fontWeight="bold" width="88"><mx:text>{fx.gettext('Your feedback')}</mx:text></mx:Label> 
+			<mx:Label fontWeight="normal" width="93"><mx:text>{'* ' + fx.gettext('required')}</mx:text></mx:Label>
+		</mx:HBox>
+		
+		<mx:TextArea id="feedback" width="100%" height="100%" >
+		</mx:TextArea>
+		
+		<mx:HBox horizontalGap="10">
+			<mx:Button width="75" fontWeight="bold" click="sendBtn_clickHandler(event)"><mx:label>{fx.gettext('Send')}</mx:label></mx:Button>
+			<mx:Label id="errorLabel" height="22" fontWeight="bold" color="0xff0000" paddingTop="2"></mx:Label>
+		</mx:HBox>
+		
+	</mx:VBox>
+	
+</mx:TitleWindow>

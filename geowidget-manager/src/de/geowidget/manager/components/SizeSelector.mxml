@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()">
+<mx:Script>
+	<![CDATA[
+		import mx.events.FlexEvent;
+		import gnu.as3.gettext.FxGettext;
+		import gnu.as3.gettext._FxGettext;
+		
+		import mx.events.ValidationResultEvent;
+		
+		[Bindable]
+		private var fx:_FxGettext;
+		
+		[Event(name="sizeChanged")]		
+		[Bindable]
+		public var widgetWidth:int;
+		[Bindable]
+		public var widgetHeight:int;
+		
+		public function updatePresetValue():void {
+			var value:int = int(presetRadioGroup.selectedValue);
+			if(value==-1) {
+				//widthTextInput.text = heightTextInput.text = "";
+				customCanvas.enabled = true;
+				
+			} else {
+				/*storing selection into variable because "validators" clears selection*/
+				var rb:RadioButton = presetRadioGroup.selection;
+				customCanvas.enabled = false;
+				
+				widgetWidth = widgetHeight = value;
+				dispatchEvent(new Event("sizeChanged"));
+				
+				/*selecting checked radiobutton*/
+				rb.selected = true;
+				
+			}
+		}
+		
+		public function setValues(width:int, height:int):void {
+			if((width==400 && height==400 || width==500 && height==500 || width==600 && height==600)) {
+				presetRadioGroup.selectedValue = width;
+			} else {
+				presetRadioGroup.selectedValue = -1;
+				widgetWidth = width;
+				widgetHeight = height;
+			}
+			updatePresetValue();
+		}
+		
+		protected function init():void
+		{
+			fx = FxGettext;
+		}
+
+	]]>
+</mx:Script>
+	<mx:VBox verticalGap="0" >
+		<mx:RadioButtonGroup id="presetRadioGroup" change="updatePresetValue()" selectedValue="400"/>
+		<mx:RadioButton value="400" groupName="presetRadioGroup" id="radiobutton1" >
+			<mx:label>{fx.gettext('small (400x400)')}</mx:label>
+			<mx:toolTip>{fx.gettext('Size of ')+'400x400 pixel'}</mx:toolTip>
+		</mx:RadioButton>
+		<mx:RadioButton value="500" groupName="presetRadioGroup"  id="radiobutton2"  >
+			<mx:label>{fx.gettext('medium (500x500)')}</mx:label>
+			<mx:toolTip>{fx.gettext('Size of ')+'500x500 pixel'}</mx:toolTip>
+		</mx:RadioButton>
+		<mx:RadioButton value="600" groupName="presetRadioGroup" id="radiobutton3"  >
+			<mx:label>{fx.gettext('large (600x600)')}</mx:label>
+			<mx:toolTip>{fx.gettext('Size of ')+'600x600 pixel'}</mx:toolTip>
+		</mx:RadioButton>
+	</mx:VBox>
+	<mx:VBox verticalGap="0" >
+		<mx:RadioButton click="widgetWidth = widthTextInput.value; widgetHeight = heightTextInput.value; dispatchEvent(new Event('sizeChanged')); widthTextInput.setFocus();" 
+						value="-1" groupName="presetRadioGroup" id="radiobutton4"  >
+			<mx:label>{fx.gettext('custom')}</mx:label>
+			<mx:toolTip>{fx.gettext('Specify custom size in pixels')}</mx:toolTip>
+		</mx:RadioButton>
+		<mx:VBox id="customCanvas" paddingLeft="19">
+			<mx:HBox>
+				<mx:Label width="40">
+					<mx:text>{fx.gettext('width:')}</mx:text>
+				</mx:Label>
+				<mx:NumericStepper  id="widthTextInput" minimum="256" maximum="2048"
+							   value="{widgetWidth}"
+							  valueCommit="widgetWidth = widthTextInput.value; dispatchEvent(new Event('sizeChanged'));" 
+							  maxChars="4" width="60" >
+					<mx:toolTip>{fx.gettext('Insert number between 256 and 2048')}</mx:toolTip>
+				</mx:NumericStepper>
+				<mx:Label text="px" />
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label width="40">
+					<mx:text>{fx.gettext('height:')}</mx:text>
+				</mx:Label>
+				<mx:NumericStepper value="{widgetHeight}" id="heightTextInput" minimum="256" maximum="2048"
+					valueCommit="widgetHeight = heightTextInput.value; dispatchEvent(new Event('sizeChanged'));" 
+							  maxChars="4" width="60" >
+					<mx:toolTip>{fx.gettext('Insert number between 256 and 2048')}</mx:toolTip>
+				</mx:NumericStepper>
+				<mx:Label text="px" />
+			</mx:HBox>
+			<mx:Label >
+				<mx:text>{fx.gettext('Min/Max: 256px - 2048px')}</mx:text>
+			</mx:Label>
+		</mx:VBox>
+	</mx:VBox>
+</mx:HBox>

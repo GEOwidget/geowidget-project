@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="de.geowidget.manager.components.*" xmlns:controls="ms.controls.*" xmlns:validators="ms.validators.*" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import ms.validators.RequiredValueValidator;
+			
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+			}
+
+		]]>
+	</mx:Script>
+	<controls:ValidationForm id="validationForm" height="100%" width="35%" validators="{[tosValidator]}">
+		<mx:Text styleName="header" width="100%">
+			<mx:htmlText>{fx.gettext('Please test your widget')}</mx:htmlText>
+		</mx:Text>
+		<mx:TextArea id="commitText" width="100%" height="100%" fontSize="14" editable="false" borderStyle="none">
+		</mx:TextArea>
+		<mx:HBox width="100%" >
+			<mx:CheckBox id="tos" name=""/>
+			<mx:Text id="tosLabel" selectable="true" width="100%"/>
+		</mx:HBox>
+	</controls:ValidationForm>
+	<controls:IFrame id="map" width="65%" height="100%"/>
+	<validators:RequiredValueValidator id="tosValidator" requiredValue="true" source="{tos}" property="selected">
+		<validators:requiredFieldError>{fx.gettext('Please agree to the terms of service.')}</validators:requiredFieldError>
+	</validators:RequiredValueValidator>
+</mx:HBox>
+

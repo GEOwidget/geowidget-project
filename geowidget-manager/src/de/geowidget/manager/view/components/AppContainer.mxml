@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" creationPolicy="all" xmlns:controls="ms.controls.*" 
+		 xmlns:components="de.geowidget.manager.view.components.*" xmlns:components1="de.geowidget.manager.view.configure.components.*" initialize="init()">
+	<mx:Script>
+		<![CDATA[
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+			
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+			}
+
+		]]>
+	</mx:Script>
+			<mx:ViewStack id="views" width="100%" height="100%" creationPolicy="all" historyManagementEnabled="true">
+				<components:StoresTab width="100%" height="100%" id="storeTab">
+					<components:label>{fx.gettext('1. Set Data')}</components:label>
+				</components:StoresTab> 
+				<components1:ConfigureMapTab width="100%" height="100%" id="configureTab">
+					<components1:label>{fx.gettext('2. Configure Map')}</components1:label>
+				</components1:ConfigureMapTab>
+				<components:TestTab width="100%" height="100%" id="testTab">
+					<components:label>{fx.gettext('3. Test Map')}</components:label>
+				</components:TestTab>
+				<components:BuildTab width="100%" height="100%" id="buildTab">
+					<components:label>{fx.gettext('4. Generate Widget')}</components:label>
+				</components:BuildTab>
+			</mx:ViewStack>
+			<mx:HBox>
+				<controls:BackForwardButtons id="backForwardButtons" width="100%" viewStack="{views}" buttonMode="true">
+					<controls:commitLabel>{fx.gettext('Generate Widget')}</controls:commitLabel>
+					<controls:okLabel>{fx.gettext('Back to your account')}</controls:okLabel>
+					<controls:cancelLabel>{fx.gettext('Cancel')}</controls:cancelLabel>
+				</controls:BackForwardButtons>	
+				<controls:ActionButton id="saveButton" visible="{views.selectedIndex&lt;views.numChildren-2}" > <!-- don't display Save button in the commit screen and the following screens -->
+					<controls:label>{fx.gettext('Save')}</controls:label>
+				</controls:ActionButton>
+			</mx:HBox>
+</mx:VBox>

@@ -1,0 +1,230 @@
+/* CSS file */
+FormItemLabel
+{
+	fontWeight: bold;
+}
+Alert
+{
+	border-color: #4393F3;
+	background-color: #4393F3;
+	color: #ffffff;
+}
+
+Menu {
+	open-duration: 0;
+}
+
+.header {
+	font-weight: normal;
+	color: #1fa1fb;
+	font-size: 26;
+}
+
+.subheader {
+	font-weight: normal;
+	color: #1fa1fb;
+	font-size: 14;
+}
+
+TextArea.statusOk
+{
+	fontSize: 12;
+	borderColor: #515151;
+	borderThickness: 1;
+	backgroundColor: #E5E5E5;
+	paddingLeft: 4;
+	paddingTop: 4;
+	paddingBottom: 4;
+	paddingRight: 4;
+}
+
+TextArea.statusBad
+{
+	fontSize: 12;
+	color: #000000;
+	font-weight: bold;
+	borderColor: #903935;
+	borderThickness: 1;
+	backgroundColor: #EF5D56;
+	paddingLeft: 4;
+	paddingTop: 4;
+	paddingBottom: 4;
+	paddingRight: 4;
+}
+
+.selectedButton {
+	font-weight: bold;
+}
+Button.barFirst {
+	down-skin: Embed(source="assets/skin/buttonbar_first_up.png",
+		scaleGridLeft="6",
+		scaleGridTop="6",
+		scaleGridRight="130",
+		scaleGridBottom="24");
+	over-skin: Embed(source="assets/skin/buttonbar_first_up.png",
+		scaleGridLeft="6",
+		scaleGridTop="6",
+		scaleGridRight="130",
+		scaleGridBottom="24");
+	up-skin: Embed(source="assets/skin/buttonbar_first_up.png",
+		scaleGridLeft="6",
+		scaleGridTop="6",
+		scaleGridRight="130",
+		scaleGridBottom="24");
+	disabled-skin: Embed(source="assets/skin/buttonbar_first_up.png",
+		scaleGridLeft="6",
+		scaleGridTop="6",
+		scaleGridRight="130",
+		scaleGridBottom="24");
+	color: #939A9D;
+	text-roll-over-color: #939A9D;
+	text-selected-color: #939A9D;
+	disabled-color: #939A9D;
+	font-weight: normal;
+}
+
+Button.bar {
+	down-skin: Embed(source="assets/skin/buttonbar_middle_up.png",
+		scaleGridLeft="2",
+		scaleGridTop="2",
+		scaleGridRight="129",
+		scaleGridBottom="27");
+	over-skin: Embed(source="assets/skin/buttonbar_middle_up.png",
+		scaleGridLeft="2",
+		scaleGridTop="2",
+		scaleGridRight="129",
+		scaleGridBottom="27");
+	up-skin: Embed(source="assets/skin/buttonbar_middle_up.png",
+		scaleGridLeft="2",
+		scaleGridTop="2",
+		scaleGridRight="129",
+		scaleGridBottom="27");
+	disabled-skin: Embed(source="assets/skin/buttonbar_middle_up.png",
+		scaleGridLeft="2",
+		scaleGridTop="2",
+		scaleGridRight="129",
+		scaleGridBottom="27");
+	color: #939A9D;
+	text-roll-over-color: #939A9D;
+	text-selected-color: #939A9D;
+	disabled-color: #939A9D;
+	font-weight: normal;
+}
+
+Button.logoutButton {
+	down-skin: Embed(source='assets/skin/logout_button_up.png');
+	up-skin: Embed(source='assets/skin/logout_button_up.png');
+	over-skin: Embed(source='assets/skin/logout_button_up.png');
+	color: #FFFFFF;
+	text-roll-over-color: #FFFFFF;
+	text-selected-color: #FFFFFF;
+	disabled-color: #FFFFFF;
+	font-weight: normal;
+	font-size: 13;
+}
+
+Button.previewButton {
+	down-skin: Embed(source='assets/skin/preview_button_up.png');
+	up-skin: Embed(source='assets/skin/preview_button_up.png');
+	over-skin: Embed(source='assets/skin/preview_button_up.png');
+	selected-up-skin: Embed(source='assets/skin/preview_button_up.png');
+	selected-over-skin: Embed(source='assets/skin/preview_button_up.png');
+	selected-down-skin: Embed(source='assets/skin/preview_button_up.png');
+}
+
+Button.feedbackButton {
+	down-skin: Embed(source='assets/skin/feedback_button_up.png');
+	up-skin: Embed(source='assets/skin/feedback_button_up.png');
+	over-skin: Embed(source='assets/skin/feedback_button_up.png');
+	selected-up-skin: Embed(source='assets/skin/feedback_button_up.png');
+	selected-over-skin: Embed(source='assets/skin/feedback_button_up.png');
+	selected-down-skin: Embed(source='assets/skin/feedback_button_up.png');
+}
+
+Button.actionButton {
+	down-skin: Embed(source="assets/skin/button_down.png",
+            scaleGridLeft="4",
+            scaleGridTop="4",
+            scaleGridRight="78",
+            scaleGridBottom="16");
+	over-skin: Embed(source="assets/skin/button_over.png",
+		scaleGridLeft="4",
+		scaleGridTop="4",
+		scaleGridRight="78",
+		scaleGridBottom="16");
+	up-skin: Embed(source="assets/skin/button_up.png",
+		scaleGridLeft="4",
+		scaleGridTop="4",
+		scaleGridRight="78",
+		scaleGridBottom="16");
+	disabled-skin: Embed(source="assets/skin/button_disabled.png",
+		scaleGridLeft="4",
+		scaleGridTop="4",
+		scaleGridRight="78",
+		scaleGridBottom="16");
+	color: #FFFFFF;
+	text-roll-over-color: #FFFFFF;
+	text-selected-color: #FFFFFF;
+	disabled-color: #FFFFFF;
+	font-weight: normal;
+}
+
+Application {
+	font-family: Arial, Helvetica, sans-serif;
+	color:#717679;
+	line-height:22px;
+	background-color: #FEFFFE;
+	background-alpha: 1;
+	fontSize: 12;
+	themeColor: #4393F3;
+	paddingTop: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+	paddingBottom: 0;
+}
+TextArea.errorText {
+	color: #FFFFFF;
+	borderColor: #FF0000;
+	borderStyle: solid;
+	borderThickness: 2;
+	backgroundColor: #FF0000;
+}
+LinkBar.mainTabBar {
+	separatorWidth: 2;
+	fontSize: 14;
+	fontWeight: normal;
+}
+ToolTip
+{
+	cornerRadius: 0;
+	fontSize: 11;
+	fontWeight: bold;
+	backgroundColor: #4393F3;
+	color: #FFFFFF;
+}
+TextArea.widgetSourceHeading {
+	font-size: 14;
+	border-style: none;
+	themeColor: #FFFFFF;
+}
+.widgetSource {
+	font-size: 20;
+	fontFamily: "Courier New";
+}
+
+ButtonLink {
+	
+	font-weight: normal;
+	color: #0000FF;
+	text-roll-over-color: #0000FF;
+	text-selected-color: #0000FF;
+	disabled-color: #0000FF;
+	
+	down-skin: ClassReference(null);
+	over-skin: ClassReference(null);
+	up-skin: ClassReference(null);
+	disabled-skin: ClassReference(null);
+	
+	skin: ClassReference(null);
+
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:controls="ms.controls.*" creationComplete="init()" paddingLeft="20" paddingRight="20" paddingTop="40" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+			
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+			}
+		]]>
+	</mx:Script>
+	<mx:Text styleName="header">
+		<mx:htmlText>{fx.gettext('Welcome to GEOwidget - your online map editor!')}</mx:htmlText>
+	</mx:Text>
+	<mx:Text styleName="subheader">
+		<mx:htmlText>{fx.gettext('This is your map you edited last time:')}</mx:htmlText>
+	</mx:Text>
+	<controls:IFrame id="map" width="100%" height="100%"/>
+	<mx:HBox>
+		<controls:ActionButton id="okButton" fontSize="12">
+			<controls:label>{fx.gettext('Edit this map')}</controls:label>
+		</controls:ActionButton>
+		<controls:ButtonLink id="removeWidgetButton" fontSize="12">
+			<controls:label>{fx.gettext('Delete this map and start over')}</controls:label>
+		</controls:ButtonLink>
+	</mx:HBox>
+	<mx:Text height="39" fontSize="13" fontWeight="normal" width="100%">
+		<mx:htmlText>{fx.gettext('Do not worry if you already embed this map in your homepage. Nothing gets changed until you really want to. You only edit a test version first.')}</mx:htmlText>
+	</mx:Text>
+</mx:VBox>

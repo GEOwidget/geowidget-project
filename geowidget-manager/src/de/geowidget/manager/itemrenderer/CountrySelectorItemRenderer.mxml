@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:Box	xmlns:mx="http://www.adobe.com/2006/mxml"
+		xmlns:ns1="de.geowidget.manager.components.*" horizontalScrollPolicy="off" paddingLeft="4" paddingRight="3" creationComplete="creationComplete()">
+
+	<mx:Script>
+		<![CDATA[
+			
+			import de.geowidget.manager.model.vo.LocationVO;
+			import mx.collections.ArrayCollection;
+			import de.geowidget.manager.model.SessionProxy;
+			import de.geowidget.manager.model.vo.CountryVO;
+			import mx.binding.utils.BindingUtils;
+			import de.geowidget.manager.utils.ArrayCollectionUtil;
+			
+			
+			public var changeCallback:Function;
+			
+			public var sessionProxy:SessionProxy;
+			
+			private function creationComplete():void
+			{
+				
+				BindingUtils.bindSetter(onCountryListChanged, sessionProxy, 'countryList');
+				
+			}
+			
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				
+				var location:LocationVO = value as LocationVO;
+				
+				if(location.country != null)
+				{
+					
+					var countryCode:String = location.country;
+					
+					var country:CountryVO = sessionProxy.getCountryByCode(countryCode);
+					
+					if(country != null)
+					{
+						countrySelector.selectedItem = country;
+						
+						return;
+					}
+					
+				}
+				
+				countrySelector.selectedIndex = 0;
+				
+			}
+			
+			private function onCountryListChanged(countryList:ArrayCollection):void
+			{
+				countrySelector.dataProvider = countryList;
+				
+				if(data != null)
+				{
+					var location:LocationVO = data as LocationVO;
+					
+					if(location.country != null)
+					{
+						var countryCode:String = location.country;
+						var country:CountryVO = sessionProxy.getCountryByCode(countryCode);
+						
+						countrySelector.selectedItem = country;
+					}
+					
+				}
+				
+			}
+			
+			private function onChange():void
+			{
+				var location:LocationVO = data as LocationVO;
+				
+				var country:CountryVO = countrySelector.selectedItem as CountryVO;
+				
+				if(country.code == null)
+				{
+					countrySelector.selectedIndex = 0;
+					
+					country = countrySelector.selectedItem as CountryVO;
+				}
+				
+				location.country = country.code;
+				
+				if(changeCallback != null)
+				{
+					changeCallback(data);
+				}
+				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<ns1:CountrySelector id="countrySelector" 
+							width="100%" 
+							height="100%" minWidth="10" minHeight="5"
+							change="onChange();" 
+							fontWeight="normal" 
+							textAlign="left" />
+	
+</mx:Box>

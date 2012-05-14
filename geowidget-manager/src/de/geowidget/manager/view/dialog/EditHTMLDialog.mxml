@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="700" height="500" showCloseButton="true" close="titlewindow1_closeHandler(event)" 
+				creationComplete="init();"
+				xmlns:components="de.geowidget.manager.components.*" xmlns:controls="ms.controls.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Menu;
+			import mx.events.CloseEvent;
+			import mx.events.MenuEvent;
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			public var htmlText:String;
+
+			[Bindable]
+			private var fx:_FxGettext;
+			
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+			}
+			
+			private var _properties:Array;
+			
+			[Bindable]
+			public function set properties(p:Array):void {
+				_properties = p;
+				for each(var property:Object in _properties) {
+					editor.addCss("." + property.name + " { color:#0000cd; text-transform: uppercase; } ." + property.name + ":before { content: '$' } ." + property.name + ":after { content: '$' }");
+				}
+			};
+			
+			public function get properties():Array {
+				return _properties;
+			}
+			
+			private var _propertiesMenu:Menu;
+			
+			protected function okBtn_clickHandler(event:MouseEvent):void
+			{				
+				htmlText = editor.xhtmlText;
+				
+				editor.visible = false;
+				//editor.restoreVisibility();
+				
+				this.dispatchEvent(new Event("ACCEPT_OK"));
+			}
+			
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{
+				
+				//editor.restoreVisibility();
+				editor.visible = false;
+				
+				dispatchEvent(new Event("ACCEPT_CANCEL"));
+			}
+			
+			protected function propertyBtn_clickHandler(e:MouseEvent):void
+			{
+				_propertiesMenu = Menu.createMenu(this, properties);
+				_propertiesMenu.labelFunction = function(item:Object):String{
+					return item.label;
+				}
+				_propertiesMenu.addEventListener(MenuEvent.ITEM_CLICK, insertProperty);
+				_propertiesMenu.addEventListener(Event.REMOVED, onMenuRemoved);
+				_propertiesMenu.show(e.stageX, e.stageY);			
+			}
+			
+			private function insertProperty(e:MenuEvent):void{
+				var property:Object = e.item;
+				editor.insertText("&nbsp;<span class='" + property.name + "'>" + property.label + "</span>&nbsp;"); 
+			}
+			
+			private function onMenuRemoved(e:Event):void{
+				_propertiesMenu.removeEventListener(MenuEvent.ITEM_CLICK, insertProperty);
+				_propertiesMenu.removeEventListener(Event.REMOVED, onMenuRemoved);
+			}
+
+		]]>
+	</mx:Script>
+	<mx:title>{fx.gettext('Edit HTML')}</mx:title>
+	<controls:XHTMLEditor xhtmlText="{htmlText}" id="editor" bottom="35" right="0" left="0" top="0" visible="true" />
+	<mx:Button click="okBtn_clickHandler(event)" left="5" bottom="5">
+		<mx:label>{fx.gettext('OK')}</mx:label>
+	</mx:Button>
+	<mx:Button click="propertyBtn_clickHandler(event)" right="5" bottom="5" visible="{properties is Array}">
+		<mx:label>{fx.gettext('Add location property...')}</mx:label>
+	</mx:Button>
+</mx:TitleWindow>
+
