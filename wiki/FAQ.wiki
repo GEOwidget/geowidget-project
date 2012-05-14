@@ -16,9 +16,7 @@ Please edit the file /trunk/geowidget-js/js/googleapi.js
 var keys = [
         {host:'dev.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBQT-YiGEB2Gh-_MXOPH4FbMzkpMNxQaFQ_LWi9LWk3A1bA-uLTk7OWlaA'},
         {host:'test.geowidget.de',      key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBQrrcHSCvucis2GhA4yAO0HhMoSIBRDz7GR2o4NCrOPAtM4CLTHnURtOA'},
-        {host:'www.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBTceWMOXjWxcZqMNC-vk45-XsWusxSHwZOoCqexHZahq2sTWDWaDqoGFQ'},
-        {host:'localhost',                      key:'ABQIAAAAM_iR3JdmhqNVovC7QQ9juhT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSeILkh3ftHaT2yiMgGIRR0ua-sDg'},
-        {host:'www.geo-widget.com',     key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBR-kRC07XFp324TiKggNrQD8CXEsRQyV5UNXR7D-s5_55cmrhh2NSdNSw'}
+        {host:'www.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBTceWMOXjWxcZqMNC-vk45-XsWusxSHwZOoCqexHZahq2sTWDWaDqoGFQ'}
 ];
 
-Just replace hosts and the keys as you need them.
+Just replace hosts and the keys as you need.
