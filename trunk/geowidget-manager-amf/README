@@ -1,0 +1,34 @@
+GEOwidget is a MIT licensed
+widget builder application for building Google Maps widgets,
+like location finders.
+It consists of three components: geowidget-js, geowidget-manager and
+geowidget-manager-php.
+geowidget-js is the actual javascripts based widget which
+consumes a JSON config that is built by the manager application.
+The later one consists of the client side part (geowidget-manager) which
+is written in Adobe Flex and the server-side part (geowidget-manager-php),
+which is written in PHP.
+
+This is the geowidget-manager-php sub-project.
+It is an AMF3 backend written in PHP 5.2 for the geowidget-manager
+which itself is written in Adobe Flex.
+This project alone is not functional, but you will need
+to install it before using the geowidget-manager.
+
+You need to copy the project to the root of your webserver.
+After that either rename the folder geowidget-manager-amf to amf or
+make a link.
+The web server must use PHP 5.2 (we used Zend Server CE PHP 5.2),
+it is not working with PHP 5.3.
+
+This AMF3 backend is using the Zend library Version 1.10.6,
+mainly for the mail transport and the AMF functionality.
+
+The flex backend is directly calling the amf/gateway.php file,
+there you find the location of the Zend library which you need
+to configure first.
+Just alter the following line for this purpose:
+set_include_path(get_include_path() . PATH_SEPARATOR . "../../library");
+
+As the project is writing files to the amf/tmp folder, make
+sure it is writable by the web server.
