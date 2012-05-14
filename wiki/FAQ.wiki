@@ -8,10 +8,10 @@ Here you can find the most frequent questions related to GEOwidget and the answe
 = Details =
 
 *What Google API Version are you using?*
-Google API version 2 is currently used.
+<br />Google API version 2 is currently used.
 
 *Where can I add my API key(s) to use GEOwidget?*
-Please edit the file /trunk/geowidget-js/js/googleapi.js
+<br />Please edit the file /trunk/geowidget-js/js/googleapi.js
 
 var keys = [
         {host:'dev.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBQT-YiGEB2Gh-_MXOPH4FbMzkpMNxQaFQ_LWi9LWk3A1bA-uLTk7OWlaA'},
