@@ -27,3 +27,6 @@ The GEOwidget application, from the user perspective, is split in two parts:
 <br />SUN JDK 6
 <br />JSBuilder2 to minify JS code
 <br />(http://dev.sencha.com/deploy/JSBuilder2/Readme.txt)
+
+Important: You need to use a own web server, starting the Javascript
+from the filesystem does not work
