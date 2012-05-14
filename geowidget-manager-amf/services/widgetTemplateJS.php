@@ -1,0 +1,2 @@
+<iframe id="map" frameborder="0" marginwidth="0" marginheight="0" style="border:<?= $config['layout']['border']['size'] ?>px solid <?= $config['layout']['border']['color'] ?>;margin:0;width:<?= $widgetWidth ?>px;height: <?= $widgetHeight ?>px;" src="<?= $url ?>?root=<?= $userUrl ?>" scrolling="no" allowtransparency="true">
+</iframe>
