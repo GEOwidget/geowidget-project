@@ -35,3 +35,4 @@ Other dependencies of the project:
 Google Maps Flex API 1.8, binary included in libs, https://developers.google.com/maps/documentation/flash/intro
 Gnu AS3 Gettext, source included, GPL license, https://github.com/vincent-petithory/as3-gettext
 PureMVC, source included, Creative Commons Attribution 3.0 United States License
+CKEditor, source included, LPGL license
