@@ -1,0 +1,90 @@
+{
+    projectName: 'geoWidget',
+    deployDir: 'build',
+    licenseText: "geoWidget\nCopyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany",
+    pkgs: [{
+        name: 'geoWidget',
+        file: 'geowidget.js',
+        fileIncludes: [{
+            text: 'I18N.js',
+            path: 'js/geowidget/'
+        },{
+            text: 'NodeHelper.js',
+            path: 'js/ms/'
+        },{
+            text: 'Behaviours.js',
+            path: 'js/ms/'
+        },{
+            text: 'ItemSelector.js',
+            path: 'js/ms/'
+        },{
+            text: 'TemplateLoader.js',
+            path: 'js/ms/'
+        },{
+            text: 'URLParser.js',
+            path: 'js/ms/'
+        },{
+            text: 'LocationSelector.js',
+            path: 'js/geowidget/component/'
+        },{
+   			text: 'GWComponent.js',
+            path: 'js/geowidget/component/'
+        },{
+			text: 'LocationList.js',
+            path: 'js/geowidget/component/'
+        },{
+        	text: 'LocationFilter.js',
+            path: 'js/geowidget/component/'
+        },{
+			text: 'ZoomOutButton.js',
+            path: 'js/geowidget/component/'
+        },{
+            text: 'DirectionsManager.js',
+            path: 'js/geowidget/manager/'
+        },{
+            text: 'ZoomManager.js',
+            path: 'js/geowidget/manager/'
+        },{
+            text: 'LayoutManager.js',
+            path: 'js/geowidget/manager/'
+        },{
+            text: 'ClusterManager.js',
+            path: 'js/geowidget/manager/'
+        },{
+            text: 'Tooltip.js',
+            path: 'js/geowidget/util/'
+        },{
+            text: 'GeoNames.js',
+            path: 'js/geowidget/util/'
+        },{
+            text: 'GeoUtil.js',
+            path: 'js/geowidget/util/'
+        },{
+            text: 'ConfigLoader.js',
+            path: 'js/geowidget/'
+        },{
+            text: 'InfoWindowFactory.js',
+            path: 'js/geowidget/'
+        },{
+            text: 'markerclusterer.js',
+            path: 'js/geowidget/'
+        },{
+            text: 'MarkerFactory.js',
+            path: 'js/geowidget/'
+        },{
+            text: 'Model.js',
+            path: 'js/geowidget/'
+        },{
+            text: 'patch.js',
+            path: 'js/geowidget/'
+        },{
+	        text: 'purePacked.js',
+	        path: 'lib/'
+	    },{
+            text: 'main.js',
+            path: 'js/geowidget/'
+        }]
+    }],
+    resources: []
+}
+
