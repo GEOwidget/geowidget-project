@@ -15,8 +15,8 @@ Here you can find the most frequent questions related to GEOwidget and the answe
 
 var keys = [
         {host:'dev.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBQT-YiGEB2Gh-_MXOPH4FbMzkpMNxQaFQ_LWi9LWk3A1bA-uLTk7OWlaA'},
-        {host:'test.geowidget.de',      key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBQrrcHSCvucis2GhA4yAO0HhMoSIBRDz7GR2o4NCrOPAtM4CLTHnURtOA'},
-        {host:'www.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBTceWMOXjWxcZqMNC-vk45-XsWusxSHwZOoCqexHZahq2sTWDWaDqoGFQ'}
+        <br />{host:'test.geowidget.de',      key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBQrrcHSCvucis2GhA4yAO0HhMoSIBRDz7GR2o4NCrOPAtM4CLTHnURtOA'},
+        <br />{host:'www.geowidget.de',       key:'ABQIAAAAquIIHMFUJg94ExRueMgLfBTceWMOXjWxcZqMNC-vk45-XsWusxSHwZOoCqexHZahq2sTWDWaDqoGFQ'}
 ];
 
 Just replace hosts and the keys as you need.
