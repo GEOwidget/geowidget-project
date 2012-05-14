@@ -9,6 +9,6 @@ GEOwidget is the online toolkit to build breathtaking interactive maps like stor
 
 The GEOwidget application, from the user perspective, is split in two parts:
 
-1) the online management interface: enter all locations which needs to be displayed. Also, various features can be adjusted like the zoom function, the search bar, routing information, etc. The web application generates an iframe which can be pasted in the source code, where it needs to be displayed.
+1) The online management interface: enter all locations which need to be displayed. Also, various features can be adjusted like the zoom function, the search bar, routing information, etc. The web application generates an iframe which can be pasted in the source code, where it needs to be displayed.
 
-2) the widget displays the map with all information as configured. The widget uses a json config file which can be manipulated any time in order to make specific adjustments which may not be available through the web interface.
+2) The widget displays the map with all information as configured. The widget uses a json config file which can be manipulated any time in order to make specific adjustments which may not be available through the web interface.
