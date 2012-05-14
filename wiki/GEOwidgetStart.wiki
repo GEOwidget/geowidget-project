@@ -2,7 +2,7 @@
 
 = Introduction =
 
-GEOwidget is the online toolkit to build breathtaking interactive maps like storefinders or directories.
+GEOwidget is the online toolkit to build breathtaking interactive maps like storefinders or directories within few clicks and without programming a single line of code.
 
 
 = Details =
