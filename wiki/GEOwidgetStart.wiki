@@ -20,6 +20,7 @@ The GEOwidget application, from the user perspective, is split in two parts:
 (newer versions may work but have not been tested)
 <br />MySQL 5.0 (or newer, not tested)
 <br />PHPUnit 3.4.3 (or newer, not tested)
+<br />GNU gettext
 
 *Widget (Javascript)*
 <br />Google API v2 key
