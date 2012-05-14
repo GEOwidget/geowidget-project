@@ -15,7 +15,7 @@ The GEOwidget application, from the user perspective, is split in two parts:
 
 = Installation requirements =
 
-*Web Interface*
+*Web Interface // Management*
 <br />Zend Server Community Environment 5.3, including PHP 5.2
 (newer versions may work but have not been tested)
 <br />MySQL 5.0 (or newer, not tested)
