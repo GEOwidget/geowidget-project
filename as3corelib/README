@@ -1,0 +1,3 @@
+Modified version of as3corelib (http://code.google.com/p/as3corelib/)
+JSONEncoder was changed so that dynamic properties of dynamic class instances are serialized too.
+License of as3corelib is not affected, means still licensed under BSD license.
