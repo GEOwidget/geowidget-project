@@ -22,4 +22,4 @@ var keys = [
 Just replace hosts and the keys as you need.
 
 *Can GEOwidget handle multiple languages?*
-<br />Yes it is possible to have multiple languages. The current code (online manager) is only in english though.
+<br />Yes it is possible to have multiple languages. The current code (online manager) is only in english though. The [http://www.gnu.org/software/gettext/ gettext] library is used for that purpose.
