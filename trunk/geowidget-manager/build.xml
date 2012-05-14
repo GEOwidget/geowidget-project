@@ -1,0 +1,57 @@
+<project name="geowidget-manager" basedir="." default="main">
+    <property environment="env"/>
+    <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
+    <taskdef resource="flexTasks.tasks" classpath="${env.FLEX_HOME}/ant/lib/flexTasks.jar"/>
+    <property name="version.major" value="9"/>
+    <property name="version.minor" value="0"/>
+    <property name="version.revision" value="124"/>
+    <property name="app.name" value="geowidget"/>
+    <target name="main">
+        <mkdir dir="bin"/>
+        <mxmlc file="src/${app.name}.mxml"
+         output="bin/${app.name}.swf"
+         target-player="${version.major}.${version.minor}.${version.revision}"
+         locale="en_US"
+         services="src/services-config.xml">
+            <load-config filename="${env.FLEX_HOME}/frameworks/flex-config.xml"/>
+            <source-path path-element="${env.FLEX_HOME}/frameworks"/>
+            <source-path path-element="../as3corelib/src"/>
+            <!-- List of SWC files or directories that contain SWC files. -->
+            <compiler.library-path dir="${env.FLEX_HOME}/frameworks" append="true">
+                <include name="libs"/>
+            </compiler.library-path>
+            <compiler.library-path dir="." append="true">
+                <include name="libs"/>
+            </compiler.library-path>
+        </mxmlc>
+        <copy todir="bin">
+            <fileset dir="html-template" excludes="**/*.html"/>
+        </copy>
+        <copy file="html-template/index.template.html"
+         tofile="bin/${app.name}.html"/>
+        <replace file="bin/${app.name}.html" token="$${swf}" value="${app.name}"/>
+        <replace file="bin/${app.name}.html" token="$${title}" value="GEOwidget - Manager"/>
+        <replace file="bin/${app.name}.html" token="$${width}" value="100%"/>
+        <replace file="bin/${app.name}.html" token="$${height}" value="100%"/>
+        <replace file="bin/${app.name}.html" token="$${bgcolor}" value="#ffffff"/>
+        <replace file="bin/${app.name}.html" token="$${application}" value="${app.name}"/>
+        <replace file="bin/${app.name}.html" token="$${version_major}" value="${version.major}"/>
+        <replace file="bin/${app.name}.html" token="$${version_minor}" value="${version.minor}"/>
+        <replace file="bin/${app.name}.html" token="$${version_revision}" value="${version.revision}"/>
+        <copy todir="bin/translation">
+            <fileset dir="src/translation" excludes="**/*.pot"/>
+        </copy>
+        <copy todir="bin/assets">
+            <fileset dir="src/assets"/>
+        </copy>
+        <copy todir="bin/examples">
+            <fileset dir="src/examples"/>
+        </copy>
+        <copy todir="bin/xhtmleditor">
+            <fileset dir="src/xhtmleditor"/>
+        </copy>
+        <copy todir="bin/templates">
+            <fileset dir="src/templates"/>
+        </copy>
+    </target>
+</project>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+		   backgroundAlpha="0.1" 
+		   implements="mx.core.IDataRenderer,mx.controls.listClasses.IDropInListItemRenderer" mouseEnabled="true" 
+		   mouseOut="rollOutHandler(event)" mouseOver="rollOverHandler(event)">
+	<mx:Script>
+		<![CDATA[
+			import ms.events.ExtendedDataGridEvent;
+			
+			import mx.controls.DataGrid;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.controls.dataGridClasses.DataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			import mx.controls.listClasses.IDropInListItemRenderer;
+			import mx.core.IDataRenderer;
+			
+			private var _changeTimer:Timer = new Timer(100,1);
+			private var _listData:DataGridListData;
+			
+			[Bindable]
+			public function get listData():BaseListData{
+				return _listData;
+			}
+			
+			public function set listData(data:BaseListData):void{
+				_listData = DataGridListData(data);
+			}
+			
+			private function lookupColumn(columnName:String):DataGridColumn {
+				var dataGrid:DataGrid = DataGrid(this.listData.owner);
+				var columns:Array = dataGrid.columns.filter(function(item:Object, index:int, a:Array):Boolean {
+					return (item as DataGridColumn).dataField == columnName;
+				});
+				if(columns.length>0) {
+					return columns[0] as DataGridColumn;
+				} else
+					return null;
+			}
+
+			protected function closeBtn_clickHandler(event:MouseEvent):void
+			{
+				var e:ExtendedDataGridEvent = new ExtendedDataGridEvent(ExtendedDataGridEvent.GRID_COLUMN_REMOVE);
+				e.column = lookupColumn(_listData.dataField);
+				DataGrid(this.listData.owner).dispatchEvent(e);
+			}
+
+
+			protected function rollOutHandler(event:MouseEvent):void
+			{
+				invalidateDisplayList();
+			}
+
+
+			protected function rollOverHandler(event:MouseEvent):void
+			{
+				invalidateDisplayList();
+			}
+			
+			override protected function updateDisplayList(w:Number, h:Number) : void{
+				super.updateDisplayList(w,h);
+				var root:Point = this.localToGlobal(new Point(0,0));
+				var rect:Rectangle= new Rectangle(root.x,root.y,this.width,this.height);
+				var p:Point = this.localToGlobal(new Point(mouseX,mouseY));
+				if(!rect.contains(p.x,p.y))
+					closeBtn.alpha = 0;
+				else
+					closeBtn.alpha = 1;
+			}
+			
+			private function changeTimerTick(e:Event):void{
+				_changeTimer.removeEventListener(TimerEvent.TIMER, changeTimerTick);
+				
+				var ev:ExtendedDataGridEvent = new ExtendedDataGridEvent(ExtendedDataGridEvent.GRID_COLUMN_HEADER_TEXT_CHANGED);
+				ev.column = lookupColumn(_listData.dataField);
+				ev.oldDataField = _listData.dataField;
+				ev.newDataField = headerText.text;
+				
+				DataGrid(this.listData.owner).dispatchEvent(ev);
+			}
+
+			protected function headerText_textInputHandler(event:TextEvent):void
+			{
+				if(!_changeTimer.hasEventListener(TimerEvent.TIMER))
+					_changeTimer.addEventListener(TimerEvent.TIMER, changeTimerTick);
+				_changeTimer.reset();
+				_changeTimer.start();
+			}
+
+
+			protected function headerText_keyDownHandler(event:KeyboardEvent):void
+			{
+				if(event.keyCode == Keyboard.ENTER){
+					if(!_changeTimer.hasEventListener(TimerEvent.TIMER))
+						_changeTimer.addEventListener(TimerEvent.TIMER,changeTimerTick);
+					_changeTimer.reset();
+					_changeTimer.start();
+					stage.focus = this.parent.parent;
+				}
+			}
+
+		]]>
+	</mx:Script>
+	<mx:TextInput id="headerText" text="{listData.label}" maxWidth="{this.width - 30}"  borderStyle="none" backgroundAlpha="0" verticalCenter="0" x="{this.getStyle('paddingLeft')}"
+				  textInput="headerText_textInputHandler(event)" 
+				  keyDown="headerText_keyDownHandler(event)"/>
+	<mx:Button skin="@Embed(source='/assets/icons/remove.png')" verticalCenter="0" right="2" id="closeBtn" alpha="0" 
+			   click="closeBtn_clickHandler(event)" useHandCursor="true" buttonMode="true"/>
+</mx:Canvas>

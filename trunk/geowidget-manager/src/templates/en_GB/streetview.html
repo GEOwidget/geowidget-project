@@ -1,0 +1,13 @@
+<div class="infowindow" >
+    <script type="application/javascript">
+        YUI().use('node', function(Y){
+			var node = Y.Node.getDOMNode(Y.get('div.infowindow div.section'));
+			panoramaOptions = { latlng: YUI.geowidget.Model.get('selectedLocation').latLng };
+			var streetview = new GStreetviewPanorama(node, panoramaOptions);
+			streetview.checkResize();
+        });
+    </script>
+    <span class="title">Streetview</span>
+    <div class="section" style="width: 300px; height: 200px;">
+    </div>
+</div>

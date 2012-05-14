@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<ns1:IconComboBox
+				xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:ns1="de.geowidget.manager.components.*"
+				creationComplete="creationComplete()" 
+				labelField="name"
+				open="onOpen()" 
+				itemRenderer="de.geowidget.manager.itemrenderer.CountryItemRenderer"
+				fontWeight="normal" textAlign="left" rowCount="7" >
+
+	<mx:Script>
+		<![CDATA[
+
+			import mx.collections.ArrayCollection;
+			import org.puremvc.as3.multicore.patterns.facade.Facade;
+			import org.puremvc.as3.multicore.interfaces.IFacade;
+			import de.geowidget.manager.model.SessionProxy;
+			import de.geowidget.manager.model.vo.CountryVO;
+			import de.geowidget.manager.utils.IconsUtil;
+			import mx.binding.utils.BindingUtils;
+			
+			
+			public var changeCallback:Function;
+			
+			public function creationComplete():void
+			{
+				
+			}
+			
+			override public function set selectedItem(data:Object):void
+			{
+				super.selectedItem = data;
+				
+				selectedItemChanged();
+				
+			}
+			
+			override public function set selectedIndex(value:int):void
+			{
+				super.selectedIndex = value;
+				
+				selectedItemChanged();
+				
+			}
+			
+			private function selectedItemChanged():void
+			{
+				if(selectedItem != null)
+				{
+					var country:CountryVO = selectedItem as CountryVO;
+					
+					if(country.code != null)
+					{
+						var countryIcon:Class = IconsUtil.getFlagIcon(country.code);
+						
+						super.setIcon(countryIcon);
+					}
+					else
+					{
+						super.setIcon(null);						
+					}	
+				}	
+			}
+			
+			private function iconFunction(_data:Object):Class
+			{
+				var country:CountryVO = _data as CountryVO;
+				
+				if(country.code != null)
+				{
+					return IconsUtil.getFlagIcon(country.code);
+				}
+				else
+				{
+					return null;
+				}
+				
+			}
+			
+			private function onOpen():void
+			{
+				dropdown.iconFunction = iconFunction;
+			}
+			
+		]]>
+	</mx:Script>
+
+</ns1:IconComboBox>

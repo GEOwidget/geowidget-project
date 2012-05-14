@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:maps="com.google.maps.*" xmlns:components="de.geowidget.manager.view.components.*"
+	creationPolicy="all"
+	layout="absolute"
+	preinitialize="preinit(event)" 
+	creationComplete="init(event)"
+	preloader="de.geowidget.manager.Preloader">
+<mx:Script>
+	<![CDATA[
+		
+		import mx.controls.Alert;
+		import mx.managers.IBrowserManager;
+		import de.geowidget.manager.utils.GeoHelper;
+		import mx.collections.ArrayCollection;
+		import gnu.as3.gettext.Locale;
+		import de.geowidget.manager.AppFacade;
+		
+		import gnu.as3.gettext.FxGettext;
+		import gnu.as3.gettext._FxGettext;
+		import gnu.as3.gettext.ISO_3166;
+		import gnu.as3.gettext.ISO_639_1;
+		import gnu.as3.gettext.services.IGettextService;
+		import gnu.as3.gettext.services.URLLoaderService;
+		
+		import mx.events.FlexEvent;
+		import mx.events.ListEvent;
+		import mx.managers.BrowserManager;
+		import mx.utils.URLUtil;
+		
+		import com.google.maps.MapEvent;
+		
+     	private var _facade:AppFacade = new AppFacade();
+		
+		[Bindable]
+		private var _fx:_FxGettext;
+     	
+		private function init(e:Event):void
+		{
+			// wait till map is loaded before starting the app
+			var app:Application = this;
+			
+			var browserManager:IBrowserManager = BrowserManager.getInstance();
+			var url:String = browserManager.url;
+			var domain:String = URLUtil.getServerName(url);
+			
+			switch(domain)
+			{
+				case "dev.geowidget.de":
+					map.key = "ABQIAAAAux34qxDRpV8k4X9kfZZrkhQT-YiGEB2Gh-_MXOPH4FbMzkpMNxStLGawUQwrqVsEu_jAKZwR4r4d6Q";
+					break;
+				case "geowidget.de":
+					map.key = "ABQIAAAAux34qxDRpV8k4X9kfZZrkhRBye19931Wh04eUqMxDIaySNPO3hQjjWCXcuYMD3bDf-iv7CDPq0gb8Q";
+					break;	
+				case "www.geowidget.de":	
+					map.key = "ABQIAAAAquIIHMFUJg94ExRueMgLfBTceWMOXjWxcZqMNC-vk45-XsWusxSHwZOoCqexHZahq2sTWDWaDqoGFQ";	
+					break;
+				case "test.geowidget.de":
+					map.key = "ABQIAAAAquIIHMFUJg94ExRueMgLfBQrrcHSCvucis2GhA4yAO0HhMoSIBRDz7GR2o4NCrOPAtM4CLTHnURtOA";
+					break;	
+				case "geo-widget.com":
+					map.key = "ABQIAAAAux34qxDRpV8k4X9kfZZrkhSNauwyKVTRnaRfAe_1kY7eX-82QxR36lmI1MFTZfkobwwjmIE5j6UZXA";
+					break;
+				case "www.geo-widget.com":
+					map.key = "ABQIAAAAquIIHMFUJg94ExRueMgLfBR-kRC07XFp324TiKggNrQD8CXEsRQyV5UNXR7D-s5_55cmrhh2NSdNSw";
+					break;
+				default:
+					Alert.show("API key for domain: " + domain + " is not specified.", "Error");
+					break;
+			}
+			
+			map.addEventListener(MapEvent.MAP_READY, function(e:MapEvent):void {
+				_facade.init(app);
+				_fx = FxGettext;
+			});
+			
+		}
+		
+		//init localization by gettext
+		protected function preinit(event:FlexEvent):void
+		{
+			
+			setlocale(Locale.LC_MESSAGES, mklocale(ISO_639_1.EN, ISO_3166.US));
+			GeoHelper.getInstance().setGeocoderLanguage(ISO_639_1.codes[ISO_639_1.EN]);
+			
+			//folder "locale" is in the same dir of stowidget.swf
+			var defaultLangLoader:IGettextService = new URLLoaderService("./translation/");
+			//defaultLangLoader.addEventListener(Event.COMPLETE, init);
+			FxGettext.bindtextdomain("messages", "locale", defaultLangLoader);
+			FxGettext.textdomain("messages");
+		}
+
+	]]>
+</mx:Script>
+<mx:Style source="app.css"/>
+	<mx:Canvas width="100%" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" backgroundColor="#ffffffd">
+		<mx:HBox width="932" horizontalCenter="-3">
+			<mx:Box width="40%" horizontalAlign="left">
+				<mx:Image source="assets/header.png" horizontalCenter="0" id="header"/>
+			</mx:Box>
+			<mx:Box width="60%" height="100%" horizontalAlign="right" verticalAlign="middle" >
+				<mx:Label styleName="header"><mx:text>{_fx.gettext('Your Online Toolkit for Google Maps\u2122')}</mx:text></mx:Label>
+			</mx:Box>
+		</mx:HBox>
+		<components:AppBar id="appBar" maxWidth="920" horizontalCenter="0" top="{header.height}"/>
+		<components:WelcomeContainer id="welcomeContainer" width="100%" height="100%" maxWidth="920" horizontalCenter="0" top="{header.height+appBar.height+15}" bottom="{footer.height}"/>
+		<mx:VBox verticalCenter="0" right="{preview.width}" >
+			<mx:Button id="previewButton" toggle="true" styleName="previewButton" useHandCursor="true" buttonMode="true" visible="false" includeInLayout="true" />
+			<mx:Button id="feedbackButton" styleName="feedbackButton" useHandCursor="true" buttonMode="true" visible="false"/>
+		</mx:VBox>
+		<mx:Image source="assets/footer.png" horizontalCenter="0" bottom="0" id="footer"/>
+		<maps:Map id="map" height="0" width="0" visible="false"/>
+		<mx:Label text="BETA" horizontalCenter="-215" y="48" fontSize="12" fontWeight="bold" color="#6E767C"/>
+	</mx:Canvas>
+	<components:JSPreview id="preview" height="100%" width="0" visible="false" backgroundColor="black" right="0"/>	
+</mx:Application>

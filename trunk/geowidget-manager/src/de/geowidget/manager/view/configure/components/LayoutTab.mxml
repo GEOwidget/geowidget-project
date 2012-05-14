@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+		 creationComplete="init()" 
+		 verticalScrollPolicy="off" xmlns:controls="ms.controls.*" xmlns:components="de.geowidget.manager.components.*"
+		 >
+<mx:Script>
+	<![CDATA[
+		import de.geowidget.manager.model.vo.ConfigVO;
+		import de.geowidget.manager.utils.ColorUtil;
+		
+		import gnu.as3.gettext.FxGettext;
+		import gnu.as3.gettext._FxGettext;
+		
+		[Bindable]
+		private var fx:_FxGettext;
+		
+		[Bindable]
+		public var config:ConfigVO;
+
+		private function init():void {
+			// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+			fx = FxGettext;
+		}		
+	]]>
+</mx:Script>
+	<mx:Form id="form" width="100%">
+		<mx:FormItem width="100%" >
+			<mx:label>{fx.gettext("User position icon:")}</mx:label>
+			<components:IconSelector id="positionIconSelector" source="{config.positionIcon.bitmap}">
+				<components:toolTipText>{fx.gettext("The icon that is used to mark the position of the visitor. The maximum size is 128x128 pixels.")}</components:toolTipText>
+			</components:IconSelector>
+		</mx:FormItem>
+		<mx:FormItem  width="100%" id="mapTypeItem">
+			<mx:label>{fx.gettext("Map:")}</mx:label>
+			<mx:toolTip>{fx.gettext("Configure the map.")}</mx:toolTip>
+			<mx:VBox>
+				<mx:ComboBox id="mapType" editable="false"/>
+				<mx:CheckBox id="showOverview" selected="{config.features.showOverview}">
+					<mx:label>{fx.gettext("Show a smaller overview map.")}</mx:label>
+				</mx:CheckBox>
+				<mx:CheckBox id="showMapTypes" selected="{config.features.showMapTypes}">
+					<mx:label>{fx.gettext("Allow user to select the map type.")}</mx:label>
+				</mx:CheckBox>
+			</mx:VBox>
+		</mx:FormItem>
+		<mx:FormItem  width="100%"  paddingTop="6">
+			<mx:label>{fx.gettext("Size:")}</mx:label>
+			<mx:toolTip>{fx.gettext("Specify here the size of the store finder widget.")}</mx:toolTip>
+			<components:SizeSelector id="sizeSelector" width="472" paddingTop="-2" />
+		</mx:FormItem>
+		<mx:FormItem  width="100%" direction="vertical">
+			<mx:label>{fx.gettext("Border:")}</mx:label>
+			<mx:HBox verticalAlign="middle">
+				<mx:NumericStepper id="borderSize" value="{config.layout.border.size}"  width="50" >
+					<mx:toolTip>{fx.gettext("Click to increase the border's size")}</mx:toolTip>
+				</mx:NumericStepper>
+				<mx:Label>
+					<mx:text>{fx.gettext('px')}</mx:text>
+				</mx:Label>
+				<mx:ColorPicker id="borderColorPicker" showTextField="true" 
+								selectedColor="{ColorUtil.convertColorToInt(config.layout.border.color)}"	>
+					<mx:toolTip>{fx.gettext("Click to select the color of the border")}</mx:toolTip>
+				</mx:ColorPicker>
+				<mx:Label>
+					<mx:text>{fx.gettext('color')}</mx:text>
+				</mx:Label>
+			</mx:HBox>
+		</mx:FormItem> 
+		<mx:FormItem  width="100%" direction="vertical">
+			<mx:label>{fx.gettext("Zoom:")}</mx:label>
+			<mx:CheckBox id="showZoom" selected="{config.features.showZoom}">
+				<mx:label>{fx.gettext("Show zoom bar component on the map.")}</mx:label>
+			</mx:CheckBox>
+		</mx:FormItem> 
+		
+	</mx:Form>
+</mx:Panel>

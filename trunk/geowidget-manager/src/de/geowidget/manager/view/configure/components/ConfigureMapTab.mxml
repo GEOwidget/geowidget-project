@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="de.geowidget.manager.view.configure.components.*" horizontalScrollPolicy="off" creationComplete="init();">
+<mx:Script>
+	<![CDATA[
+		import gnu.as3.gettext.FxGettext;
+		import gnu.as3.gettext._FxGettext;
+		
+		[Bindable] 
+		private var fx:_FxGettext;
+	
+		private function init():void {
+			// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+			fx = FxGettext;
+		}	
+	]]>
+</mx:Script>
+	<mx:TextArea id="statusText" width="100%" height="50" verticalScrollPolicy="off" editable="false" selectable="false" styleName="statusOk">
+		<mx:text>{fx.gettext("Here can modify the behaviour of your map and how it does look like. Just play with the settings below and have a look at the result by using the 'preview' button on the right border.")}</mx:text>
+	</mx:TextArea>
+	<mx:HBox width="100%" height="100%" horizontalGap="0">
+		<components:LayoutTab width="457" height="100%" title="Layout" id="layoutTab" horizontalScrollPolicy="off"/>
+		<components:OptionsTab width="457" height="100%" title="Options" id="optionsTab" horizontalScrollPolicy="off"/>
+	</mx:HBox>
+</mx:VBox>

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:components="de.geowidget.manager.components.*" xmlns:controls="ms.controls.*"
+		creationComplete="init();" showCloseButton="true" close="handleClose(event);" xmlns:itemrenderer="de.geowidget.manager.itemrenderer.*" xmlns:maps="com.google.maps.*" width="828" height="526"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off" mouseDown="showStatusMessage('');">
+		
+	<mx:Script>
+		<![CDATA[
+			import de.geowidget.manager.model.vo.metadata.HTMLTemplateMetaVO;
+			import com.google.maps.interfaces.IMap;
+			import com.google.maps.services.GeocodingResponse;
+			import de.geowidget.manager.model.vo.GeoStatusVO;
+			import ms.util.StringUtil;
+			import org.puremvc.as3.multicore.interfaces.IFacade;
+			import de.geowidget.manager.AppFacade;
+			import de.geowidget.manager.model.EnvironmentProxy;
+			import de.geowidget.manager.model.vo.IconVO;
+			import de.geowidget.manager.controller.Messages;
+			import com.google.maps.LatLng;
+			import de.geowidget.manager.model.FileProxy;
+			import de.geowidget.manager.model.vo.LocationVO;
+			import de.geowidget.manager.model.SessionProxy;
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			import de.geowidget.manager.model.vo.LocationVO;
+			import de.geowidget.manager.utils.FileUtil;
+			import flash.display.Bitmap;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.RemoteObject;
+			import de.geowidget.manager.model.vo.CountryVO;
+			import de.geowidget.manager.model.vo.ImageVO;
+			import mx.binding.utils.BindingUtils;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+
+			public var facade:IFacade;
+			
+			[Bindable]
+			private var location:LocationVO;	
+
+			[Bindable]
+			public var sessionProxy:SessionProxy;
+
+			[Bindable]
+			public var fileProxy:FileProxy;
+			
+			public var widgetService:RemoteObject;
+			
+			private var noImagePlaceholder:ImageVO;
+			
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+				
+				showStatusMessage('');
+				nameTextInput.setFocus();
+				
+				noImagePlaceholder = new ImageVO('no_image', new Bitmap());
+				
+			}
+			
+			public function getLocation():LocationVO {
+				return location;
+			}
+			
+			public function setLocation(location:LocationVO):void {
+				// do data binding
+				this.location = location;
+				
+				var selectedCountry:CountryVO = sessionProxy.getCountryByCode(location.country);
+				countrySelector.selectedItem = selectedCountry;
+
+				//
+				// icons
+				//
+				
+				updateIconsList();
+				if(location.iconVO != null)
+				{
+					iconList.selectedItem = location.iconVO;
+				}
+				else
+				{
+					iconList.selectedIndex = 0;
+				}
+				
+				//
+				// images
+				//
+				
+				updateImagesList();
+				imageList.selectedItem = (location.imageVO != null) ? location.imageVO : noImagePlaceholder;
+				
+				//
+				// templates
+				//
+				
+				updateTemplateList();
+				templateList.selectedItems = location.infoWindowTemplateVOs;
+
+			}
+			
+			private function handleClose(e:Event):void {
+				dispatchEvent(new Event("ACCEPT_CANCEL"));
+			}
+			
+			private function handleOk(e:Event):void {
+				validateLocation(function():void {
+					// do validation before triggering the ok
+					
+					// check website url
+					
+					if(websiteURL.text != '')
+					{
+						
+						//var urlRegExp:RegExp = new RegExp('^(http://)?[\w\d:#@%/;$()~_?\+-=\\\.&]*$');
+						var urlRegExp:RegExp = new RegExp("^(http:\/\/|https:\/\/|www\.)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?(\/)*$", 'i');
+						
+						if(urlRegExp.test(websiteURL.text))
+						{
+							
+							if(websiteURL.text.indexOf('http://') == -1)
+							{
+								websiteURL.text = 'http://' + websiteURL.text;
+							}
+							
+							transferValues();
+							
+							dispatchEvent(new Event("ACCEPT_OK"));
+							
+						}
+						else
+						{
+							showStatusMessage(fx.gettext('Please check the Website URL. It does not look right.'));
+							
+							websiteURL.setFocus();
+						}
+					}
+					else
+					{
+						
+						dispatchEvent(new Event("ACCEPT_OK"));
+					}
+					
+				}, function():void {
+					showStatusMessage(fx.gettext('Please check your address data. For the provided data an address could not be found.'));
+				});
+			}
+			
+			private function updateIconsList():void
+			{
+				
+				var iconVO:IconVO = iconList.selectedItem as IconVO;
+				
+				iconList.dataProvider = fileProxy.config.icons;
+				
+				iconList.selectedItem = iconVO;
+				
+			}
+			
+			private function updateImagesList():void {
+				
+				var dp:Array = [noImagePlaceholder];
+				
+				var imageVO:ImageVO = imageList.selectedItem as ImageVO;
+				
+				imageList.dataProvider = dp.concat(fileProxy.config.images);
+				
+				imageList.selectedItem = imageVO;
+				
+			}
+			
+			private function updateTemplateList():void {
+				
+				var dp:Array = [];
+				var items:Array = templateList.selectedItems;
+				
+				dp = dp.concat(fileProxy.config.infotemplates);
+				
+				templateList.dataProvider = dp;
+				templateList.selectedItems = items;
+				
+			}
+			
+			private function showStatusMessage(msg:String):void {
+				if(StringUtil.isEmpty(msg)) {
+					statusText.htmlText = fx.gettext("Here you can edit your location. Each location must have at least a city and a country set - all other settings are optional. Select a template so additional information is shown for the user of the map, if he clicks on the location's icon.");
+					statusText.styleName = "statusOk"; 										
+				} else {
+					statusText.htmlText = msg;
+					statusText.styleName = "statusBad";
+				}
+			}			
+			
+			private function get selectedCountryCode():String {
+				var selectedCountry:CountryVO = countrySelector.selectedItem as CountryVO;
+				return (selectedCountry!=null) ? selectedCountry.code : null;
+			}
+			
+			private function isGeoStatusDirty():Boolean {
+				return location.street!=street.text || 
+				location.postalCode!=postalCode.text ||
+				location.city!=city.text || 
+				location.country!=selectedCountryCode;
+			}
+			
+			private function validateLocation(callback:Function=null, failcallBack:Function=null):void {
+				
+				var doCallBack:Function = function():void {
+					if(callback!=null && failcallBack!=null) {
+						location.isGeoStatusCommitable() ? callback() : failcallBack();
+					} 
+				};
+				
+				if(isGeoStatusDirty())
+				{
+					// only do geolookup if a value has changed, if so transfer values first
+					transferValues();
+					if(!StringUtil.isEmpty(location.city))
+						location.doGeoLookup(function():void {
+							doCallBack();
+						}); 
+					else {
+						location.geoStatus = null;
+						doCallBack();
+					}
+				} else {
+					transferValues();
+					doCallBack();
+				}
+			}
+			
+			private function handleAddIcon(e:Event):void {
+				
+				FileUtil.loadIcon(function(bitmap:Bitmap):void
+				{
+					
+					var iconId:String = 'icon_' + fileProxy.config.icons.length;
+					
+					var iconVO:IconVO = new IconVO(iconId, bitmap);
+					fileProxy.config.icons.push(iconVO);
+					
+					updateIconsList();
+					
+				}
+				);
+			}
+			
+			private function handleAddImage(e:Event):void {
+				
+				FileUtil.loadImage(function(bitmap:Bitmap):void
+				{
+					
+					var imageId:String = 'image_' + fileProxy.config.images.length;
+					
+					var imageVO:ImageVO = new ImageVO(imageId, bitmap);
+					fileProxy.config.images.push(imageVO);
+					
+					updateImagesList();
+					
+				}
+				);
+				
+			}
+			
+			private function onFault(event:FaultEvent, token:Object):void 
+			{
+				facade.sendNotification(Messages.FAULT_MESSAGE,event.fault.faultString);
+			}
+			
+			private function transferValues():void 
+			{
+				
+				location.name = nameTextInput.text;
+				location.street = street.text;
+				location.postalCode = postalCode.text; 
+				location.city = city.text; 
+				location.phone1 = phone1.text;
+				location.phone2 = phone2.text;
+				location.fax = fax.text;
+				location.email = email.text;
+				location.websiteURL = websiteURL.text;
+				location.custom = custom.text;
+				location.country = selectedCountryCode;
+				
+				location.iconVO = iconList.selectedItem as IconVO;
+				
+				var imageVO:ImageVO = imageList.selectedItem as ImageVO;
+				location.imageVO = (imageVO.id == 'no_image') ? null : imageVO;
+				
+				location.infoWindowTemplateVOs = templateList.selectedItems;
+				
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:title>{fx.gettext('Edit location')}</mx:title>
+	<mx:TextArea id="statusText" width="100%" verticalScrollPolicy="off" height="50" editable="false" selectable="false"/>
+	<mx:HBox>
+		<mx:Form defaultButton="{okButton}" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Name/Company')}</mx:label>
+				<mx:TextInput id="nameTextInput" text="{location.name}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Street')}</mx:label>
+				<mx:TextInput id="street" text="{location.street}" change="validateLocation();" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem >
+				<mx:label>{fx.gettext('PLZ')}</mx:label>
+				<mx:TextInput id="postalCode" text="{location.postalCode}" change="validateLocation();">
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem required="true">
+				<mx:label>{fx.gettext('City')}</mx:label>
+				<mx:TextInput id="city" text="{location.city}" change="validateLocation();">
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem id="countryFormItem">
+				<mx:label>{fx.gettext('Country')}</mx:label>
+				<components:CountrySelector id="countrySelector" dataProvider="{sessionProxy.countryList}" width="{nameTextInput.width}" change="validateLocation();" />
+			</mx:FormItem>
+			<mx:FormItem width="{countryFormItem.width}" height="26">
+				<mx:label>{fx.gettext('Coordinates')}</mx:label>
+				<itemrenderer:StatusItemRenderer width="100%" height="100%" data="{location}" geoStatus="{location.geoStatus}"/>
+			</mx:FormItem>			
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Phone 1')}</mx:label>
+				<mx:TextInput id="phone1" text="{location.phone1}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Phone 2')}</mx:label>
+				<mx:TextInput id="phone2" text="{location.phone2}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Fax')}</mx:label>
+				<mx:TextInput id="fax" text="{location.fax}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Email')}</mx:label>
+				<mx:TextInput id="email" text="{location.email}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem width="{countryFormItem.width}" >
+				<mx:label>{fx.gettext('Website URL')}</mx:label>
+				<mx:TextInput id="websiteURL" width="100%" text="{location.websiteURL}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Custom')}</mx:label>
+				<mx:TextInput id="custom" text="{location.custom}" >
+				</mx:TextInput>
+			</mx:FormItem>
+			<mx:FormItem direction="horizontal" >
+				<controls:ActionButton id="okButton" fontSize="12" click="handleOk(event);">
+					<controls:label>{fx.gettext('Ok')}</controls:label>
+				</controls:ActionButton>
+				<controls:ButtonLink id="cancelButton" fontSize="12" click="handleClose(event);">
+					<controls:label>{fx.gettext('Cancel')}</controls:label>
+				</controls:ButtonLink>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:Form x="359" y="0" width="439" >
+			<mx:FormItem direction="vertical">
+				<mx:label>{fx.gettext('Icon')}</mx:label>
+				<mx:HorizontalList id="iconList" columnWidth="80" rowHeight="82"
+					itemRenderer="de.geowidget.manager.itemrenderer.IconSelectorRenderer" width="330" height="100">
+				</mx:HorizontalList>
+				<mx:Button click="handleAddIcon(event);">
+					<mx:label>{fx.gettext('Add icon')}</mx:label>
+				</mx:Button>
+			</mx:FormItem>
+			<mx:FormItem direction="vertical">
+				<mx:label>{fx.gettext('Image')}</mx:label>
+				<mx:HorizontalList id="imageList" columnWidth="80" rowHeight="82"
+					itemRenderer="de.geowidget.manager.itemrenderer.ImageSelectorRenderer" width="330" height="100">
+				</mx:HorizontalList>
+				<mx:Button click="handleAddImage(event);">
+					<mx:label>{fx.gettext('Add image')}</mx:label>
+				</mx:Button>
+			</mx:FormItem>
+			<mx:FormItem>
+				<mx:label>{fx.gettext('Template')}</mx:label>
+				<mx:HorizontalList id="templateList" columnWidth="90" rowHeight="82" allowMultipleSelection="true"
+					itemRenderer="de.geowidget.manager.itemrenderer.TemplateSelectorRenderer" width="330" height="100">
+				</mx:HorizontalList>
+			</mx:FormItem>
+		</mx:Form>
+	</mx:HBox>
+</mx:TitleWindow>

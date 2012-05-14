@@ -1,0 +1,781 @@
+# German translations for Adobe package
+# German messages for Adobe.
+# Copyright (C) 2010 THE Adobe'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Adobe package.
+# Marcus Schiesser <>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: messages 0.1\n"
+"Report-Msgid-Bugs-To: info@geowidget.de\n"
+"POT-Creation-Date: 2010-10-29 16:05+0200\n"
+"PO-Revision-Date: 2010-10-29 16:28+0100\n"
+"Last-Translator: Marcus Schiesser <ms@geowidget.de>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/GeoHelper.as:64
+msgid "Multiple places found. Did you mean..."
+msgstr "Mehrere Orte wurden gefunden. Meinten Sie..."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/GeoHelper.as:69
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/GeoHelper.as:74
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/GeoHelper.as:202
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/GeoHelper.as:207
+msgid "Sorry, no address found. Please try again."
+msgstr "Leider wurde kein Ort mit dieder Adresse gefunden."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/FileUtil.as:29
+msgid "Image file (*.png,*.gif,*.jpeg,*.jpg)"
+msgstr "Bilddatei (*.png,*.gif,*.jpeg,*.jpg)"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/FileUtil.as:38
+msgid "Please select a smaller logo. The size of the logo must not exceed 128x128 pixels."
+msgstr "Bitte wählen Sie ein kleineres Logo. Das Logo darf nicht größer als 128x128 Pixel sein."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/FileUtil.as:47
+msgid "Please select a smaller image. The size of the logo must not exceed 500x500 pixels."
+msgstr "Bitte wählen Sie ein kleineres Bild. Das Bild darf nicht größer als 500x500 Pixel sein."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/FileUtil.as:55
+msgid "loading"
+msgstr "lädt"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/FileUtil.as:88
+msgid "Your file load failed as the following error occured: "
+msgstr "Beim Datentransfer ist ein Fehler aufgetreten: "
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/utils/FileUtil.as:88
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/controller/FaultCmd.as:18
+msgid "Error"
+msgstr "Fehler"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/model/SessionProxy.as:113
+msgid "Error while accessing your session."
+msgstr "Ein Fehler ist aufgetreten, bitte melden Sie sich erneut an."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/model/FileProxy.as:275
+msgid ""
+"As part of our latest update we have simplified the template handling of GEOwidget.\\n"
+"Now you can choose from a selection of predefined templates for your infowindow.\\n"
+"For your existing locations your old templates are used. Please check the templates of your locations."
+msgstr ""
+"As part of our latest update we have simplified the template handling of GEOwidget.\\n"
+"Now you can choose from a selection of predefined templates for your infowindow.\\n"
+"For your existing locations your old templates are used. Please check the templates of your locations."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/BuildTabMediator.as:25
+msgid "<p>Please embed the HTML code below into your HTML file to include the generated widget. For your convenience you can also use this <a href='{0}' target='_blank'>example HTML</a> as template.</p>"
+msgstr "<p>Bitte kopieren Sie den generierten Code an die richtige Stelle in dem Quellcode Ihrer Homepage. Sie können auch dieses <a href='{0}' target='_blank'>Beispiel</a> runterladen.</p>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/AppContainerMediator.as:48
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:36
+msgid "Back to your account"
+msgstr "Zurück zu Ihrem Account"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/AppContainerMediator.as:129
+msgid "Your feedback has been send successfully"
+msgstr "Vielen Dank. Wir haben Ihre Nachricht erhalten."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/AppContainerMediator.as:145
+msgid "Your configuration has been saved successfully."
+msgstr "Ihre Konfiguration wurde gespeichert."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:34
+msgid "Yes, I agree to the <u><a href='{0}' target='_blank'>terms of service</a></u>, the <u><a href='{1}' target='_blank'>terms of use</a></u> and the <u><a href='{2}' target='_blank'>terms of use for the Google Maps API</a></u>"
+msgstr "Ja, ich bestätige die <u><a href='{0}' target='_blank'>AGB</a></u>, die <u><a href='{1}' target='_blank'>Nutzungsbedingungen</a></u> und die <u><a href='{2}' target='_blank'>Nutzungsbedingungen der Google Maps API</a></u> gelesen und verstanden zu haben und akzeptiere sie hiermit."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:67
+msgid "To the right you see the preview of the widget as you have configured it.<br/><br/>Before continuing make sure<br/>the widget looks like you expected.<br/><br/>By pressing the '<b>Generate Widget</b>' button your changes<br/>will be visible to your live environment.<br/><br/>Configuration for:<br/>{firstName} {lastName}<br/><br/>You have selected the following options:<br/>{options}<br/><br/>The new configuration has <b>{numberLocations} locations</b>.<br/>So your monthly costs for the widget are <b>{pricePerMonth}</b>.<br/>So your yearly costs for the widget are <b>{pricePerYear}</b>."
+msgstr "Die Voransicht rechts zeigt die zu generierende Karte, gemäß Ihren Konfigurationswünschen.<br />Bevor Sie die Karte mit Klick auf <b>Karte erstellen</b> generieren, stellen Sie sicher, dass die Karte genau Ihren Vorstellungen entspricht.<br /><br />Haben Sie bereits eine GEOwidget Karte in ihre Homepage eingebunden, so wird diese dadurch automatisch aktualisiert.<br /><br />Zusammenfassung:<br/>{firstName} {lastName}<br/><br/>Ihre Optionen:<br/>{options}<br/><br/>Anzahl Elemente: <b>{numberLocations}</b>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:95
+msgid "<li>Show zoom bar</li>"
+msgstr "<li>Zoomleiste anzeigen</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:97
+msgid "<li>Show overview map</li>"
+msgstr "<li>Ansichtskarte anzeigen</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:99
+msgid "<li>Show map type component</li>"
+msgstr "<li>Kartentyp Anzeige aktivieren</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:101
+msgid "<li>Enable routing</li>"
+msgstr "<li>Wegbeschreibung aktivieren</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:103
+msgid "<li>Show search bar</li>"
+msgstr "<li>Suchleiste anzeigen</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:105
+msgid "<li>Welcome Text</li>"
+msgstr "<li>Begrüßungstext</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/TestTabMediator.as:107
+msgid "<li>Cluster locations</li>"
+msgstr "<li>Zusammenfassung von Elementen (Clustering) aktivieren</li>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/WelcomeMediator.as:88
+msgid "Do you really want to delete the map?"
+msgstr "Möchten Sie wirklich diese Karte löschen?"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/WelcomeMediator.as:88
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/LayoutTabMediator.as:26
+msgid "Normal"
+msgstr "Karte"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/LayoutTabMediator.as:27
+msgid "Physical"
+msgstr "Gelände"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/LayoutTabMediator.as:28
+msgid "Satellite"
+msgstr "Satellit"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/LayoutTabMediator.as:29
+msgid "Hybrid"
+msgstr "Hybrid"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/LayoutTabMediator.as:30
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/ms/util/ItemSelector.as:72
+msgid "Close"
+msgstr "Schließen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/ms/util/ItemSelector.as:80
+msgid "(Please use mouse to select an item, ESC for cancel)"
+msgstr "(Bitte nutzen Sie die Maus um Elemente auszuwählen und [ESC] zum Abbrechen)"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/ms/controls/IFrame.as:118
+msgid "ExternalInterface is not available in this container. Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime are required."
+msgstr "Ihr Browser unterstützt eine wichtige Funktion nicht (NPRuntime). Bitte nutzen Sie eine möglichst aktuelle Version des Browsers Ihrer Wahl, vorzugsweise Firefox, Safari oder Internet Explorer."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/geowidget.mxml:102
+msgid "Your Online Toolkit for Google Maps\\u2122"
+msgstr "Der Online Baukasten für Google Maps\\u2122"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:61
+msgid "small (400x400)"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:62
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:66
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:70
+msgid "Size of "
+msgstr "Größe "
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:65
+msgid "medium (500x500)"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:69
+msgid "large (600x600)"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:76
+msgid "custom"
+msgstr "individuell"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:77
+msgid "Specify custom size in pixels"
+msgstr "Bitte geben Sie die Größe in Pixel an"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:82
+msgid "width:"
+msgstr "Breite:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:88
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:99
+msgid "Insert number between 256 and 2048"
+msgstr "Bitte tragen Sie eine Zahl zwischen 256 und 1048 ein"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:94
+msgid "height:"
+msgstr "Höhe:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/components/SizeSelector.mxml:104
+msgid "Min/Max: 256px - 2048px"
+msgstr "Min - Max Größe: 256px - 2048px"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/ImageSelectorRenderer.mxml:33
+msgid "No Image"
+msgstr "Kein Bild"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/StatusItemRenderer.mxml:104
+msgid "We can not lookup the address please review the address data."
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/StatusItemRenderer.mxml:110
+msgid "Performing Geolookup..."
+msgstr "Am geokodieren..."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/StatusItemRenderer.mxml:115
+msgid "Geolookup was successful"
+msgstr "Geokodierung war erfolgreich"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/StatusItemRenderer.mxml:120
+msgid "Please select a location..."
+msgstr "Bitte einen Ort auswählen..."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/ImageDataGridItemRenderer.mxml:31
+msgid "no image"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/TemplateDataGridItemRenderer.mxml:31
+msgid "no template"
+msgstr "keine Vorlage"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/itemrenderer/TemplateSelectorRenderer.mxml:33
+msgid "No Template"
+msgstr "Keine Vorlage"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:122
+msgid "Please check your address data. For the provided data an address could not be found."
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:166
+msgid "Here you can edit your location. Each location must have at least a city and a country set - all other settings are optional. Select a template so additional information is shown for the user of the map, if he clicks on the location's icon."
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:277
+msgid "Edit location"
+msgstr "Ort editieren"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:282
+msgid "Name"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:287
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:55
+msgid "Street"
+msgstr "Straße"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:292
+msgid "PLZ"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:297
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:49
+msgid "City"
+msgstr "Stadt"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:302
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:45
+msgid "Country"
+msgstr "Land"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:306
+msgid "Coordinates"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:310
+msgid "Phone 1"
+msgstr "Telefon 1"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:315
+msgid "Phone 2"
+msgstr "Telefon 2"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:320
+msgid "Fax"
+msgstr "Fax"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:325
+msgid "Email"
+msgstr "E-Mail"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:330
+msgid "Website URL"
+msgstr "Homepage"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:335
+msgid "Opening hours"
+msgstr "Öffnungszeiten"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:341
+msgid "Ok"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:344
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:37
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:350
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:59
+msgid "Icon"
+msgstr "Icon"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:355
+msgid "Add icon"
+msgstr "Icon hinzufügen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:359
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:63
+msgid "Image"
+msgstr "Bild"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:364
+msgid "Add image"
+msgstr "Bild hinzufügen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditLocationDialog.mxml:368
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:67
+msgid "Template"
+msgstr "Vorlage"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/SelectTemplateDialog.mxml:44
+msgid "Depending on what kind of map you want to create, we provide different templates. If your desired template is not available, please choose 'Empty' and create the desired data columns on your own."
+msgstr "Bitte wählen Sie eine der angebotenen Vorlagen; wenn Sie keine passende Vorlage finden, erstellen Sie einfach eine leeres Projekt."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/SelectTemplateDialog.mxml:48
+msgid "Select template"
+msgstr "Vorlage auswählen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/SelectTemplateDialog.mxml:50
+msgid "If you choose a new template, the existing information will be merged with the template data. You may have to delete unwanted columns afterwards as no data will be deleted by this operation."
+msgstr "Wenn Sie die Vorlage eines bestehenden Projektes ändern werden die Daten in das neue Modell umkopiert. Ggf. müssen Sie nutzlosgewordene Spalten löschen. Wichtig: bei dieser Operation werden keine Daten gelöscht!"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/SelectTemplateDialog.mxml:55
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditHTMLDialog.mxml:86
+msgid "OK"
+msgstr "OK"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:53
+msgid "Form fields validation is failed"
+msgstr "Bitte überprüfen Sie ihre Angaben."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:89
+msgid "Your feedback is welcome"
+msgstr "Your feedback is welcome"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:102
+msgid "Your name"
+msgstr "Ihr Name"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:106
+msgid "Your email address"
+msgstr "Ihre E-Mail Adresse"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:110
+msgid "Send me a copy"
+msgstr "Eine Kopie an mich"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:113
+msgid "Your feedback"
+msgstr "Ihr Anmerkung"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:114
+msgid "required"
+msgstr "Pflichtfeld"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/FeedbackDialog.mxml:121
+msgid "Send"
+msgstr "Senden"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditHTMLDialog.mxml:83
+msgid "Edit HTML"
+msgstr "HTML-Code bearbeiten"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/EditHTMLDialog.mxml:89
+msgid "Add location property..."
+msgstr "Eigenschaft zu Element hinzufügen..."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/ImportDataDialog.mxml:14
+msgid "<textformat leftmargin='pt' indent='-30pt'><font size='+1' indent='0'>You already have a list of locations stored in a Excel sheet and you want to use that data in GEOWidget ?<br/>Just make sure your sheet has a right layout and is stored as a CSV file: <b><a href='{0}' target='_blank'>download a sample here</a></b><br/>To be imported, a sheet must start with a first line containing the names of the columns, and start with the columns:street, postalCode,city and country. Additional columns may exist.<br/>Warning: existing data will be overwritten.</font></textformat>"
+msgstr "<textformat leftmargin='pt' indent='-30pt'><font size='+1' indent='0'>Wenn Sie bereits eine Liste mit Elementen als Excel Dokument haben, müssen Sie sicherstellen, dass die Datei das richtige Format besitzt und als CSV abgespeichert wurde. Sie können auch bei Bedarf <b><a href='{0}' target='_blank'>eine Beispielsdatei herunterladen.</a></b><br />Damit der Import funktioniert, muss die Datei in der 1. Zeile alle Namen der unterschiedlichen Spalten beinhalten. Die ersten 3 Spalten MÜSSEN street (Straße), postalCode (Postleitzahl), city (Stadt) und country (Land) heissen.<br /><b>Wichtig: bereits existierende Daten werden bei einem Import ersetzt.</b></font></textformat>"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/dialog/ImportDataDialog.mxml:15
+msgid "Import CSV..."
+msgstr "CSV Datei importieren..."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppBar.mxml:20
+msgid "Logout >>"
+msgstr "Abmelden"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:32
+msgid "Here you can add the locations you want to display on your map. To edit an location just double-click on the item. To preview the result map, click on the preview button on the right border."
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:52
+msgid "Postal code"
+msgstr "PLZ"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/StoresTab.mxml:74
+msgid "Add location"
+msgstr "Ort hinzufügen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/BuildTab.mxml:16
+msgid "Your widget has been successfully generated!"
+msgstr "Ihre Karte wurde erfolgreich erstellt."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/WelcomeFirstTime.mxml:22
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/Welcome.mxml:18
+msgid "Welcome to GEOwidget - your online map editor!"
+msgstr "Willkommen bei GEOwidget - der Online Baukasten für Google Maps!"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/WelcomeFirstTime.mxml:25
+msgid "Take a look at whats possible with this amazing tool or start creating your own map. Look at these examples:"
+msgstr "GEOwidget der Online Baukasten für individuelle Google Maps. Schauen Sie sich die Beispiele an oder legen Sie sofort los!"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/WelcomeFirstTime.mxml:32
+msgid "a directory of golf courts"
+msgstr "Golfplatz Verzeichnis"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/WelcomeFirstTime.mxml:35
+msgid "a tourist guide for paris"
+msgstr "Touristenattraktionen in Paris"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/WelcomeFirstTime.mxml:38
+msgid "a store locator"
+msgstr "Filialfinder"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/WelcomeFirstTime.mxml:43
+msgid "or create your own map!"
+msgstr "Meine eigene Map"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/Welcome.mxml:21
+msgid "This is your map you edited last time:"
+msgstr "Dies ist Ihre Map."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/Welcome.mxml:26
+msgid "Edit this map"
+msgstr "Diese Karte bearbeiten"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/Welcome.mxml:29
+msgid "Delete this map and start over"
+msgstr "Diese Karte löschen und neu beginnen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/Welcome.mxml:33
+msgid "Do not worry if you already embed this map in your homepage. Nothing gets changed until you really want to. You only edit a test version first."
+msgstr "Wichtig: auch wenn Sie diese Karte in Ihre Homepage eingebunden haben. Änderungen werden erst übernommen, nachdem Sie diese getestet und im Anschluß durchgeführt haben."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/TestTab.mxml:22
+msgid "Please test your widget"
+msgstr "Bitte testen Sie Ihre GEOwidget Karte."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/TestTab.mxml:33
+msgid "Please agree to the terms of service."
+msgstr "Bitte bestätigen Sie die Nutzungsbedingungen."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:21
+msgid "1. Set Data"
+msgstr "1. Daten"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:24
+msgid "2. Configure Map"
+msgstr "2. Konfiguration"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:27
+msgid "3. Test Map"
+msgstr "3. Karte erstellen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:30
+msgid "4. Generate Widget"
+msgstr " "
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:35
+msgid "Generate Widget"
+msgstr "Karte erstellen"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/components/AppContainer.mxml:40
+msgid "Save"
+msgstr "Speichern"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:27
+msgid "Features:"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:29
+msgid "Allow user to calculate a route."
+msgstr "Benutzer erlauben eine Wegbeschreibung zu errechnen."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:32
+msgid "Display search bar to find the nearest location."
+msgstr "Suchfeld anzeigen, um die kürzeste Route zu berrechnen."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:36
+msgid "Display welcome text after loading the map."
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:41
+msgid "Edit text..."
+msgstr "Text bearbeiten..."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:47
+msgid "Clustering:"
+msgstr "Clustering aktivieren:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/OptionsTab.mxml:50
+msgid "Automatically cluster nearby locations"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:28
+msgid "User position icon:"
+msgstr "Position-Icon:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:30
+msgid "The icon that is used to mark the position of the visitor. The maximum size is 128x128 pixels."
+msgstr "Position-Icon: dieses Bild wird für die Positionierung des Homepage Besucher auf der Karte genutzt. Max. Größe 128x128 Pixel."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:34
+msgid "Map:"
+msgstr "Kartentyp:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:35
+msgid "Configure the map."
+msgstr "Karte konfigurieren."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:39
+msgid "Show a smaller overview map."
+msgstr "Übersichtskarte anzeigen."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:42
+msgid "Allow user to select the map type."
+msgstr "Kartentyp als Kartenkomponente anzeigen anzeigen."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:47
+msgid "Size:"
+msgstr "Größe:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:48
+msgid "Specify here the size of the store finder widget."
+msgstr "Bitte geben Sie die Dimensionen der Karte ein."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:52
+msgid "Border:"
+msgstr "Umrandung:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:55
+msgid "Click to increase the border's size"
+msgstr "Bitte klicken Sie auf das Feld um die Randbreite zu ändern."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:58
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:46
+msgid "px"
+msgstr "px"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:62
+msgid "Click to select the color of the border"
+msgstr "Bitte klicken Sie auf das Feld um die Farbe des Randes zu definieren bzw. zu ändern."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:65
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:52
+msgid "color"
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:70
+msgid "Zoom:"
+msgstr "Zoom:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/LayoutTab.mxml:72
+msgid "Show zoom bar component on the map."
+msgstr "Zoomleiste als Kartenkomponente anzeigen."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/ConfigureMapTab.mxml:18
+msgid "Here can modify the behaviour of your map and how it does look like. Just play with the settings below and have a look at the result by using the 'preview' button on the right border."
+msgstr ""
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:31
+msgid "Icon:"
+msgstr "Icon:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:39
+msgid "Text:"
+msgstr "Text:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:49
+msgid "Click to select the color of the font"
+msgstr "Bitte klicken Sie auf das Feld um die Schriftfarbe zu ändern."
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:60
+msgid "Grid:"
+msgstr "Gitter:"
+
+#: /home/mschiesser/flex3/geowidget-manager/src/de/geowidget/manager/view/configure/components/options/ClusterOptions.mxml:65
+msgid "pixel wide"
+msgstr "Pixel Breite"
+
+#~ msgid "Store Locator"
+#~ msgstr "Filialfinder"
+
+#~ msgid "CompanyName"
+#~ msgstr "Firmenname"
+
+#~ msgid "Real estate"
+#~ msgstr "Immobilien"
+
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgid "Surface"
+#~ msgstr "Wohnfläche"
+
+#~ msgid "Price"
+#~ msgstr "Preis"
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid "Single location (office)"
+#~ msgstr "Anfahrtsplan (Büro)"
+
+#~ msgid "Comment"
+#~ msgstr "Kommentar"
+
+#~ msgid "Single location (store)"
+#~ msgstr "Anfahrtsplan (Geschäft)"
+
+#~ msgid "The HTML code has been copied to the clipboard."
+#~ msgstr "Der HTML-Code wurde in den Zwischenspeicher kopiert."
+
+#~ msgid "Info"
+#~ msgstr "Info"
+
+#~ msgid "Please pay attention that {0} locations have not been correctly geocoded yet. They will not be displayed correctly on the map. Please click on the icon on the status column."
+#~ msgstr "Bitte beachten Sie, dass {0} Elemente noch nicht geokodiert wurden und daher nicht korrekt auf der Karte dargestellt werden. Bitte klicken auf das entsprechende Symbol in der Status-Spalte um weitere Informationen zu bekommen."
+
+#~ msgid "Here you can enter your location data. Provide at least the city name for each location. If the location is not in your country, please also select the right country."
+#~ msgstr "Bitte geben Sie hier die Daten für ihre Objekte ein. Für eine korrekte Geokodierung ist mindestens der Name der Stadt erforderlich. Wenn sich ihr Objekt nicht in Deutschland befindet, geben Sie außerdem bitte das Land an."
+
+#~ msgid "Excel CSV file"
+#~ msgstr "Excel CSV Datei"
+
+#~ msgid "Do you want to remove this column?"
+#~ msgstr "Möchten Sie diese Spalte löschen?"
+
+#~ msgid "Undefined"
+#~ msgstr "Undefiniert"
+
+#~ msgid "{value} ({tabs} Tabs)"
+#~ msgstr "{value} ({tabs} Reiter)"
+
+#~ msgid "You selected all locations that have '{property}' set to '{value}'. The information window you are building to your right will be shown for all these {locations} locations."
+#~ msgstr "Sie haben alle Elemente ausgewählt, die in der Spalte '{property}' den Wert '{value}' haben. Das Info-Fenster auf der rechten Seite wird also für diese {locations} Elemente erstellt."
+
+#~ msgid "Edit to the right the information window that will be displayed for all locations. If you want to use different information windows per location, select the checkbox above."
+#~ msgstr "Mit der Funktion 'Reiter hinzufügen' können Sie die Info-Fenster gestalten und mit Inhalt füllen. Brauchen Sie verschiedene Fenster für unterschiedliche Elemente, dann klicken Sie bitte auf 'Unterschiedliche Info-Fenster nutzen?'."
+
+#~ msgid "This operation will delete the {0} tabs you have configured before. Are you sure you want to do that?"
+#~ msgstr "Diese Operation wird {0} Reiter löschen. Sind sie sicher, dass Sie das möchten?"
+
+#~ msgid "No template selected. Please select a template first."
+#~ msgstr "Sie haben keine Vorlage ausgesucht. Bitte wählen Sie zuerst eine aus."
+
+#~ msgid "pixels"
+#~ msgstr "Pixels"
+
+#~ msgid "small"
+#~ msgstr "klein"
+
+#~ msgid "medium"
+#~ msgstr "mittel"
+
+#~ msgid "large"
+#~ msgstr "groß"
+
+#~ msgid "Width field is required. Please enter number between 256 and 2048."
+#~ msgstr "Breite muss eingetragen werden. Bitte geben Sie einen Wert zwischen 256 und 2048 ein."
+
+#~ msgid "Height field is required. Please enter number between 256 and 2048."
+#~ msgstr "Höhe muss eingetragen werden. Bitte geben Sie einen Wert zwischen 256 und 2048 ein."
+
+#~ msgid "Error during address lookup. Please check address or click here to try again."
+#~ msgstr "Bei der Geokodierung ist ein Fehler aufgetreten. Bitte überprüfen Sie die Adresse oder starten Sie erneut ein Lookup."
+
+#~ msgid "The icon that is used to mark a location on the map. The maximum size is 128x128 pixels."
+#~ msgstr "Position-Icon: dieses Bild wird für die Positionierung des Homepage Besucher auf der Karte genutzt. Max. Größe 128x128 Pixel."
+
+#~ msgid "Country Code"
+#~ msgstr "Ländercode"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "Import..."
+#~ msgstr "Importieren..."
+
+#~ msgid "Add row"
+#~ msgstr "Zeile hinzufügen"
+
+#~ msgid "Special action code:"
+#~ msgstr "Aktionscode:"
+
+#~ msgid "Show zoom bar:"
+#~ msgstr "Zoomleiste aktivieren:"
+
+#~ msgid "Show overview component on the map."
+#~ msgstr "Kleine Übersichtskarte (untern rechts) als Kartenkomponente anzeigen."
+
+#~ msgid "Show map type component:"
+#~ msgstr "Kartentyp Anzeige aktivieren:"
+
+#~ msgid "Enable routing:"
+#~ msgstr "Routenplanung aktivieren:"
+
+#~ msgid "Show search bar:"
+#~ msgstr "Suchfeld aktivieren:"
+
+#~ msgid "Welcome Text:"
+#~ msgstr "Begrüßungsfenster aktivieren:"
+
+#~ msgid "A welcome text that is shown to the user at startup of the map."
+#~ msgstr "Zeigen Sie eine Begrüßung für die Homepagebesucher."
+
+#~ msgid "If there are too many locations nearby, put them in a cluster."
+#~ msgstr "Diese Funktion fasst Elemente zusammen die sich in einem bestimmten Zoomlevel sonst überlappen oder zu nah aneinander stehen würden. Ein Klick auf das Cluster-Icon zeigt eine Liste der zusammenfassten Elementen."
+
+#~ msgid "Choose the type of the map."
+#~ msgstr "Bitte wählen Sie ein Kartentyp aus."
+
+#~ msgid "px thick"
+#~ msgstr "Pixel breit"
+
+#~ msgid "The icon that is used to cluster several locations. The maximum size is 128x128 pixels."
+#~ msgstr "Cluster-Icon: dieses Icon wird für das Zusammenfassen von mehreren Elementen genutzt (wenn die Funktion auch aktiviert wird). Die max. Größe beträgt 128x128 Pixel."
+
+#~ msgid "pixel height"
+#~ msgstr "Pixel Höhe"
+
+#~ msgid "Center text?"
+#~ msgstr "Text zentrieren?"
+
+#~ msgid "Use different information per location?"
+#~ msgstr "Unterschiedliche Info-Fenster nutzen?"
+
+#~ msgid "Property:"
+#~ msgstr "Spaltenname:"
+
+#~ msgid "Value:"
+#~ msgstr "Wert:"
+
+#~ msgid "Delete Selected Tab"
+#~ msgstr "Markierten Reiter löschen"
+
+#~ msgid "Edit template..."
+#~ msgstr "Vorlage bearbeiten..."
+
+#~ msgid "Location icon:"
+#~ msgstr "Element-Icon:"
+
+#~ msgid "More than one location icon?"
+#~ msgstr "Benötigen Sie mehrere unterschiedliche Icons?"
+
+#~ msgid "For each value of the selected property a icon can be chosen above."
+#~ msgstr "Für jeden möglichen Wert in der ausgewählten Spalte kann oben ein eigenes Icon ausgewählt werden. Der mögliche Wert steht unter dem Icon."
+
+#~ msgid "The <bytes> parameter must not be null"
+#~ msgstr "Der <bytes> parameter darf nicht null sein"
+
+#~ msgid "The MO file is invalid or corrupted."
+#~ msgstr "Die MO Datei ist ungültig oder kaputt."

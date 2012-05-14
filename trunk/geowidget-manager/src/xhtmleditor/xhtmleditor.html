@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+        <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+        <script type="text/javascript">
+			function getText() {
+				return CKEDITOR.instances.editor1.getData();
+			}
+			
+			function setText(s) {
+				CKEDITOR.instances.editor1.setData(s);
+			}
+			
+			function insertText(s) {
+				CKEDITOR.instances.editor1.insertHtml(s);
+			}
+
+			function addCss(css) {
+				CKEDITOR.instances.editor1.addCss(css);
+			}
+
+        </script>
+    </head>
+    <body style="margin: 0px;">
+	    <textarea name="editor1">&lt;p&gt;Initial value.&lt;/p&gt;</textarea>
+		<script type="text/javascript">
+			var toolbar =
+[
+    ['Font','FontSize'],['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+    ['NumberedList','BulletedList','-','Outdent','Indent'],
+    ['Cut','Copy','Paste'],
+    ['Undo','Redo'],
+    '/',
+    ['Bold','Italic','Underline','-','Subscript','Superscript'],
+    ['TextColor','BGColor'],
+    ['Image','Flash','SpecialChar'],
+    ['Source','-','ShowBlocks'],
+];
+			CKEDITOR.replace( 'editor1', { toolbar: toolbar } );
+			CKEDITOR.on('instanceReady', function( evt ) {
+		         var editor = evt.editor;
+		         editor.execCommand('maximize');
+		      });
+		</script>
+    </body>
+</html>

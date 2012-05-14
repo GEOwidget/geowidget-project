@@ -1,0 +1,349 @@
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<!--
+Smart developers always View Source.
+
+This application was built using Adobe Flex, an open source framework
+for building rich Internet applications that get delivered via the
+Flash Player or to desktops via Adobe AIR.
+
+Learn more about Flex at http://flex.org
+// -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--  BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="history/history.css" />
+<!--  END Browser History required section -->
+
+<title>${title}</title>
+
+<link rel="StyleSheet" HREF="/geowidget-js/css/style.css" type="text/css" > 
+
+<style>
+
+body { margin: 0px; overflow:hidden }
+
+div.overlay {
+	position:absolute;
+	background-color:transparent;
+	border:0px;
+	visibility:hidden;
+}
+
+div.infowindow_border {
+	margin: 5px 9px 0px 0px;
+	padding: 10px 10px 10px 10px;
+	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	
+	border: 1px solid #A0A0A0;
+	
+}
+
+</style>
+
+<script src="AC_OETags.js" language="javascript"></script>
+
+<!--  BEGIN Browser History required section -->
+<script src="history/history.js" language="javascript"></script>
+<!--  END Browser History required section -->
+
+<script src="pure/pure_packed.js" language="javascript"></script>
+<script src="jquery-1.4.2.min.js" language="javascript"></script>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// Globals
+// Major version of Flash required
+var requiredMajorVersion = ${version_major};
+// Minor version of Flash required
+var requiredMinorVersion = ${version_minor};
+// Minor version of Flash required
+var requiredRevision = ${version_revision};
+// -----------------------------------------------------------------------------
+//
+function callIFrame(functionName, params) {
+	var func = document.getElementById("myIFrame").contentWindow[functionName];
+	var ret = func.apply(this, params);
+	return ret;
+}
+
+function moveIFrame(x,y,w,h) {
+    var frameRef=document.getElementById("myFrame");
+    frameRef.style.left=x;
+    frameRef.style.top=y;
+    var iFrameRef=document.getElementById("myIFrame");
+	iFrameRef.width=w;
+	iFrameRef.height=h;
+}
+
+function hideIFrame(){
+    document.getElementById("myFrame").style.visibility="hidden";
+}
+
+function showIFrame(){
+    document.getElementById("myFrame").style.visibility="visible";
+}
+
+function thisMovie(movieName) {
+     if (navigator.appName.indexOf("Microsoft") != -1) {
+         return window[movieName];
+     } else {
+         return document[movieName];
+     }
+}
+
+function loadIFrame(url){
+
+	document.getElementById("myFrame").innerHTML = "<iframe id='myIFrame' src='" + url + "'frameborder='0'></iframe>";
+	// inform AS when iframe is loaded
+	document.getElementById("myIFrame").onload = function() {
+		var movie = thisMovie("${application}");
+		movie.frameLoaded();
+	};
+}
+
+function isIFrameVisible(){
+	return document.getElementById("myFrame").style.visibility === 'visible';
+}
+
+function applyTemplateIFrame(templateStr, jsonStr){
+
+	clearIFrame();
+
+	var template = document.createElement('div');
+	template.innerHTML = '<div class="infowindow">' + templateStr + '</div>';
+
+	var data = eval('(' + jsonStr + ')');
+
+	$p(template.firstChild).autoRender(data);
+
+	var iFrameRef=document.getElementById("myIFrame");
+
+	iFrameRef.contentWindow.document.body.appendChild(template.firstChild);
+
+}
+
+function clearIFrame()
+{
+
+	var iFrameRef=document.getElementById("myIFrame");
+	
+	iFrameRef.contentWindow.document.body.setAttribute('style', '');
+	iFrameRef.contentWindow.document.body.innerHTML = "";
+	
+}
+
+//
+// overlay Div functions
+//
+
+function overlayDivClear(id)
+{
+
+	var divRef=document.getElementById(id);
+	
+	divRef.innerHTML = "";
+
+}
+
+function overlayDivLoad(id, source)
+{
+	overlayDivClear(id);
+	
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.open("GET", source, true);
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var divRef=document.getElementById(id);
+			divRef.innerHTML=xmlhttp.responseText;
+			
+			switch(id)
+			{
+				case 'mapPreview':
+					
+					$(divRef).find('iframe').css({width: "100%", height: "100%"});
+					
+					break;
+				default:
+					
+					break;
+			}
+			
+		}
+	}
+	
+	xmlhttp.send();
+	
+}
+
+function overlayDivApplyTemplate(id, templateStr, jsonStr)
+{
+	
+	overlayDivClear(id);
+
+	var template = document.createElement('div');
+	template.innerHTML = '<div>' + templateStr + '</div>';
+
+	var data = eval('(' + jsonStr + ')');
+
+	$p(template.firstChild).autoRender(data);
+
+	var divRef=document.getElementById(id);
+	var divHtml='';
+	
+	switch(id)
+	{
+		case 'informationTabPreview':
+			
+			divHtml += '<div class="infowindow infowindow_border">';
+			divHtml += '<img style="position: absolute; left: 590px; top: 15px; width: 12px; height: 12px; border: 0px none; padding: 0px; margin: 0px;" src="assets/mapfiles/iw_close.gif">';
+			divHtml += template.firstChild.innerHTML;
+			divHtml += '</div>';
+			
+			break;
+		default:
+			divHtml = template.firstChild.innerHTML;
+			
+			break;
+	}
+	
+	divRef.innerHTML = divHtml;
+	
+	
+}
+
+function overlayDivIsVisible(id)
+{
+	return document.getElementById(id).style.visibility === 'visible';
+}
+
+function overlayDivShow(id)
+{
+	document.getElementById(id).style.visibility="visible";
+}
+
+function overlayDivHide(id)
+{
+	document.getElementById(id).style.visibility="hidden";
+}
+
+function overlayDivMove(id,x,y,w,h)
+{
+	
+	var divRef = document.getElementById(id);
+    divRef.style.left = x;
+    divRef.style.top = y;
+    divRef.style.width = w;
+    divRef.style.height = h;
+    
+}
+
+/////
+/////
+/////
+
+-->
+</script>
+</head>
+
+<body scroll="no">
+<script language="JavaScript" type="text/javascript">
+<!--
+// Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
+var hasProductInstall = DetectFlashVer(6, 0, 65);
+
+// Version check based upon the values defined in globals
+var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+
+if ( hasProductInstall && !hasRequestedVersion ) {
+	// DO NOT MODIFY THE FOLLOWING FOUR LINES
+	// Location visited after installation is complete if installation is required
+	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+	var MMredirectURL = window.location;
+    document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+    var MMdoctitle = document.title;
+
+	AC_FL_RunContent(
+		"src", "playerProductInstall",
+		"FlashVars", "MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"",
+		"width", "${width}",
+		"height", "${height}",
+		"align", "middle",
+		"id", "${application}",
+		"quality", "high",
+		"bgcolor", "${bgcolor}",
+		"name", "${application}",
+		"allowScriptAccess","sameDomain",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+} else if (hasRequestedVersion) {
+	// if we've detected an acceptable version
+	// embed the Flash Content SWF when all tests are passed
+	AC_FL_RunContent(
+			"src", "${swf}",
+			"width", "${width}",
+			"height", "${height}",
+			"align", "middle",
+			"id", "${application}",
+			"quality", "high",
+			"bgcolor", "${bgcolor}",
+			"name", "${application}",
+			"allowScriptAccess","sameDomain",
+			"type", "application/x-shockwave-flash",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer",
+			"wmode", "opaque"
+	);
+  } else {  // flash is too old or we can't detect the plugin
+    var alternateContent = 'Alternate HTML content should be placed here. '
+  	+ 'This content requires the Adobe Flash Player. '
+   	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+    document.write(alternateContent);  // insert non-flash content
+  }
+// -->
+</script>
+<noscript>
+  	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			id="${application}" width="${width}" height="${height}"
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			<param name="movie" value="${swf}.swf" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="${bgcolor}" />
+			<param name="allowScriptAccess" value="sameDomain" />
+			<param name="wmode" value="opaque" />
+			<embed src="${swf}.swf" quality="high" bgcolor="${bgcolor}"
+				width="${width}" height="${height}" name="${application}" align="middle"
+				play="true"
+				loop="false"
+				quality="high"
+				allowScriptAccess="sameDomain"
+				type="application/x-shockwave-flash"
+				pluginspage="http://www.adobe.com/go/getflashplayer"
+				wmode="opaque">
+			</embed>
+	</object>
+</noscript>
+<div id="informationTabPreview" class="overlay" ></div>
+<div id="mapPreview" class="overlay preview" ></div>
+<div id="myFrame" class="overlay" ></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="330" title="Import Data" showCloseButton="true" close="titlewindow1_closeHandler(event)" creationComplete="init()">
+
+	<mx:Script>
+		<![CDATA[
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			import mx.utils.StringUtil;
+			
+			import mx.events.CloseEvent;
+			
+			private function init():void {
+				text.htmlText = StringUtil.substitute(FxGettext.gettext("<textformat leftmargin='pt' indent='-30pt'><font size='+1' indent='0'>You already have a list of locations stored in a Excel sheet and you want to use that data in GEOWidget ?<br/>Just make sure your sheet has a right layout and is stored as a CSV file: <b><a href='{0}' target='_blank'>download a sample here</a></b><br/>To be imported, a sheet must start with a first line containing the names of the columns, and start with the columns:street, postalCode,city and country. Additional columns may exist.<br/>Warning: existing data will be overwritten.</font></textformat>"), '/flash/examples/beispieladressen.csv');
+				importBtn.label = FxGettext.gettext('Import CSV...');
+			}
+			
+			protected function importBtn_clickHandler(event:MouseEvent):void
+			{				
+				this.dispatchEvent(new Event("ACCEPT_OK"));
+			}
+
+			protected function titlewindow1_closeHandler(event:CloseEvent):void
+			{				
+				dispatchEvent(new Event("ACCEPT_CANCEL"));
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:TextArea id="text" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" verticalScrollPolicy="off" right="5" left="5" top="5" bottom="35">
+	</mx:TextArea>
+	<mx:Button id="importBtn" click="importBtn_clickHandler(event)" left="5" bottom="5">
+	</mx:Button>
+</mx:TitleWindow>

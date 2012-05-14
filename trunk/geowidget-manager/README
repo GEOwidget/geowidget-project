@@ -1,0 +1,37 @@
+GEOwidget is a MIT licensed
+widget builder application for building Google Maps widgets,
+like location finders.
+It consists of three components: geowidget-js, geowidget-manager and
+geowidget-manager-php.
+geowidget-js is the actual javascripts based widget which
+consumes a JSON config that is built by the manager application.
+The later one consists of the client side part (geowidget-manager) which
+is written in Adobe Flex and the server-side part (geowidget-manager-php),
+which is written in PHP.
+
+This is the geowidget-manager sub-project.
+It is the client for the manager application which is written in Adobe Flex 3.5.
+As IDE Flex Builder 3 was used. You should have at least 
+a running Adobe Flex 3.5 SDK (http://sourceforge.net/adobe/flexsdk/wiki/Download%20Flex%203/)
+before starting, recommended is also the IDE.
+The project uses a modified version of the as3corelib (http://code.google.com/p/as3corelib/)
+which source code you can find in the as3corelib folder of the geowidget-project.
+As precondition you need to install the geowidget-js and 
+the geowidget-manager-amf component before continuing.
+
+For license reasons the image files noted in MISSING_IMAGES
+have been removed. You need to replace them with dummies
+before continuing.
+
+After that you must be able to do a release build of the project 
+which will be located in 'bin-release' afterwards. Copy this folder
+with the name 'flash' to your webserver together with the other
+'geowidget-js' and 'amf' folders. After that you must be able
+to start a test session by calling
+
+http://localhost/amf/testsession.php
+
+Other dependencies of the project:
+Google Maps Flex API 1.8, binary included in libs, https://developers.google.com/maps/documentation/flash/intro
+Gnu AS3 Gettext, source included, GPL license, https://github.com/vincent-petithory/as3-gettext
+PureMVC, source included, Creative Commons Attribution 3.0 United States License

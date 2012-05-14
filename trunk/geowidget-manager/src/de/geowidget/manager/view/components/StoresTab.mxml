@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:controls="ms.controls.*"
+	xmlns:view="de.geowidget.manager.view.*" 
+	xmlns:components="de.geowidget.manager.components.*"
+	creationComplete="init()" width="100%" height="100%" >
+<mx:Script>
+	<![CDATA[
+		import de.geowidget.manager.itemrenderer.*;
+		
+		import gnu.as3.gettext.FxGettext;
+		import gnu.as3.gettext._FxGettext;
+		
+		import ms.controls.*;
+		
+		import mx.collections.ArrayCollection;
+		
+		[Bindable] 
+		private var fx:_FxGettext;
+		
+		[Bindable]
+		public var locations:ArrayCollection;
+		
+		private function init():void {
+			// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+			fx = FxGettext;
+		}
+		
+	]]>
+</mx:Script>
+
+	<mx:TextArea id="statusText" width="100%" editable="false" selectable="false" styleName="statusOk" height="50" verticalScrollPolicy="off">
+		<mx:text>{fx.gettext("Here you can add the locations you want to display on your map. To edit an location just double-click on the item. To preview the result map, click on the preview button on the right border.")}</mx:text>
+	</mx:TextArea>
+	<mx:Canvas id="dataGridContainer" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" >
+		<mx:DataGrid id="dataGrid" dataProvider="{locations}" 
+			width="100%" height="20" rowHeight="55" 
+			editable="false" horizontalScrollPolicy="off" verticalScrollPolicy="auto" 
+			doubleClickEnabled="true" >
+			<mx:columns>
+				<mx:DataGridColumn id="deleteColumn" 
+								   editable="false" width="50" sortable="false"/>
+				
+				<mx:DataGridColumn id="countryColumn" 
+									width="185" sortable="false">
+					<mx:headerText>{fx.gettext('Country')}</mx:headerText>
+				</mx:DataGridColumn>
+				
+				<mx:DataGridColumn id="cityColumn" dataField="city" minWidth="100" >
+					<mx:headerText>{fx.gettext('City')}</mx:headerText>
+				</mx:DataGridColumn>
+				<mx:DataGridColumn id="postalCodeColumn" dataField="postalCode" minWidth="60" width="90">
+					<mx:headerText>{fx.gettext('Postal code')}</mx:headerText>
+				</mx:DataGridColumn>
+				<mx:DataGridColumn id="streetColumn" dataField="street" minWidth="170">
+					<mx:headerText>{fx.gettext('Street')}</mx:headerText>
+				</mx:DataGridColumn>
+				
+				<mx:DataGridColumn textAlign="center" itemRenderer="de.geowidget.manager.itemrenderer.IconDataGridItemRenderer" >
+					<mx:headerText>{fx.gettext('Icon')}</mx:headerText>
+				</mx:DataGridColumn>
+				
+				<mx:DataGridColumn textAlign="center" itemRenderer="de.geowidget.manager.itemrenderer.ImageDataGridItemRenderer" >
+					<mx:headerText>{fx.gettext('Image')}</mx:headerText>
+				</mx:DataGridColumn>
+				
+				<mx:DataGridColumn width="120" textAlign="center" itemRenderer="de.geowidget.manager.itemrenderer.TemplateDataGridItemRenderer" >
+					<mx:headerText>{fx.gettext('Template')}</mx:headerText>
+				</mx:DataGridColumn>
+				
+			</mx:columns>
+		</mx:DataGrid>
+		<mx:HBox id="dataGridControls" width="100%" paddingTop="5" paddingBottom="5" >
+			<mx:Button id="addRowBtn" icon="@Embed(source='/assets/icons/add.png')">
+				<mx:label>{fx.gettext('Add location')}</mx:label>
+			</mx:Button>
+		</mx:HBox>
+	</mx:Canvas>
+</mx:VBox>

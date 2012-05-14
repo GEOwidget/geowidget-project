@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ *
+ * Copyright (C) 2009-12 Marcus Schiesser, Gelnhausen, Germany and SaaS Web Internet Solutions GmbH, Karlsruhe, Germany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+-->
+<mx:Grid xmlns:mx="http://www.adobe.com/2006/mxml" 
+		xmlns:components="de.geowidget.manager.components.*" 
+		creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import de.geowidget.manager.model.vo.ClusterVO;
+			import de.geowidget.manager.utils.ColorUtil;
+			import de.geowidget.manager.utils.EffectUtil;
+			
+			import gnu.as3.gettext.FxGettext;
+			import gnu.as3.gettext._FxGettext;
+			
+			[Bindable]
+			private var fx:_FxGettext;
+			
+			[Bindable]
+			public var cluster:ClusterVO;
+
+			private function init():void {
+				// ok, this looks a bit silly, but somehow this special treatment is needed sometimes
+				fx = FxGettext;
+			}
+
+		]]>
+	</mx:Script>
+	
+	<mx:GridRow width="100%" >
+		<mx:GridItem width="25%" horizontalAlign="right" horizontalGap="0">
+			<mx:Label><mx:text>{fx.gettext('Icon:')}</mx:text></mx:Label>
+		</mx:GridItem>
+		<mx:GridItem width="75%">
+			<components:IconSelector id="clusterIcon" source="{cluster.bitmap}"/>
+		</mx:GridItem>
+	</mx:GridRow>
+	<mx:GridRow width="100%" >
+		<mx:GridItem horizontalAlign="right" >
+			<mx:Label><mx:text>{fx.gettext('Text:')}</mx:text></mx:Label>
+		</mx:GridItem>
+		<mx:GridItem width="75%">
+			<mx:VBox>
+				<mx:HBox verticalAlign="middle">
+					<mx:NumericStepper id="fontSize" value="{cluster.fontSize}" minimum="6" maximum="30"/>
+					<mx:Label>
+						<mx:text>{fx.gettext('px')}</mx:text>
+					</mx:Label>
+					<mx:ColorPicker id="fontColorPicker" showTextField="true" selectedColor="{ColorUtil.convertColorToInt(cluster.color)}">
+						<mx:toolTip>{fx.gettext('Click to select the color of the font')}</mx:toolTip>
+					</mx:ColorPicker>
+					<mx:Label>
+						<mx:text>{fx.gettext('color')}</mx:text>
+					</mx:Label>
+				</mx:HBox>
+			</mx:VBox>
+		</mx:GridItem>
+	</mx:GridRow>
+	<mx:GridRow width="100%" >
+		<mx:GridItem horizontalAlign="right" >
+			<mx:Label><mx:text>{fx.gettext('Grid:')}</mx:text></mx:Label>
+		</mx:GridItem>
+		<mx:GridItem>
+			<mx:NumericStepper id="gridSize" value="{cluster.gridSize}" maximum="100" minimum="1"/>
+			<mx:Label >
+				<mx:text>{fx.gettext('pixel wide')}</mx:text>
+			</mx:Label>
+		</mx:GridItem>
+	</mx:GridRow>
+</mx:Grid>
